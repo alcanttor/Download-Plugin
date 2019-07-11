@@ -44,5 +44,13 @@ jQuery(document).ready(function() {
         }); 
          return false;
     });
+
+   jQuery('#next_first').click(function() {
+       jQuery('#dpwap_section_first').fadeOut('1000');
+       jQuery("#dpwap_section_second").show();
+   });
+
+
+
 });
 

@@ -56,7 +56,6 @@ function dpwap_admin_scripts( $hook ){
 add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 
 // Add new page for download dashboard
-
 function dpwap_register_menupage(){
     add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
     remove_menu_page('mul_upload');
@@ -80,7 +79,6 @@ function add_download_bulk_actions( $bulk_array ) {
   	return $bulk_array;
 }
 add_filter( 'bulk_actions-plugins', 'add_download_bulk_actions');
-
 
 //plugins bulk action dropdown handler function 
 function dpwap_download_bulk_action_handler( $redirect, $doaction, $object_ids ) {  
@@ -111,13 +109,11 @@ function dpwap_download_bulk_action_handler( $redirect, $doaction, $object_ids )
 }
 add_filter( 'handle_bulk_actions-plugins', 'dpwap_download_bulk_action_handler', 10, 3 );
 
-
 //admin multiple download function
 function dpwap_admin_multiple_download_func() {
     global $pagenow;
     if ( $pagenow == 'plugins.php' && $_GET['action']=='mul_download' && $_GET['upload']>0) {
     	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_download_plugins'));
-          echo "&nbsp;";
          foreach ($dpwap_plugins as $arrValue) {
 	 	     foreach ($arrValue as $dpwapValue) {  ?>
 	 	       <script language="javascript" type="text/javascript">
@@ -130,7 +126,21 @@ function dpwap_admin_multiple_download_func() {
 	  }
   }
 }
-add_action( 'admin_init', 'dpwap_admin_multiple_download_func' );
+add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
+
+//admin multiple download function
+function dpwap_setting_popup_func() {
+	
+    global $pagenow;
+    if ( $pagenow == 'plugins.php') {
+      if(!get_option('dpwap_popup_status')){	
+      require_once 'dpwap_setting.php'; 
+      add_option('dpwap_popup_status',1);	 
+      }
+      
+  }
+}
+add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 
 //admin multiple upload form
 function dpwap_multiple_upload_admin_func(){
@@ -144,7 +154,7 @@ function dpwap_multiple_upload_admin_func(){
      }
  add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
- 
+
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
    $waplugin = $_POST['dpwap_url'];
@@ -313,3 +323,9 @@ function dpwap_download(){
 	}	
 }
 add_action( 'admin_init', 'dpwap_download' );
+
+// plugin deactivation function
+function dpwap_plugin_deactivation_function(){
+	delete_option('dpwap_popup_status');
+}
+register_deactivation_hook( __FILE__, 'dpwap_plugin_deactivation_function' );

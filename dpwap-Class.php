@@ -43,6 +43,22 @@ class dpwapuploader
         }
     }
 	
+	function dpwap_plugin_all_activate(){ 
+	 $dpwapNum=get_option("dpwap_plugins");
+	 for($i=1; $i<=$dpwapNum; $i++){
+	 	$waplugin=$_POST["dpwap_plglist_$i"];
+	 	$waplugins = get_option('active_plugins');
+        if($waplugins){
+		  if (!in_array($waplugin, $waplugins)) {
+			 array_push($waplugins,$waplugin);
+			 update_option('active_plugins',$waplugins);
+		  }
+		}
+	 } 
+	  echo '<script language="javascript" type="text/javascript">';
+      echo 'document.location = "'.admin_url('plugins.php').'"';
+      echo '</script>';
+ }
 	// get plugin information	
     function dpwap_get_plugin($plugin_name){
         $name = $plugin_name;

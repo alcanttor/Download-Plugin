@@ -1,22 +1,7 @@
 <?php 
 $dpwapObj = new dpwapuploader();
-if(isset($_POST['dpid']) && $_POST['dpid']>0){
-	 $dpwapNum=get_option("dpwap_plugins");
-	 for($i=1; $i<=$dpwapNum; $i++){
-	 	$waplugin=$_POST["dpwap_plglist_$i"];
-	 	$waplugins = get_option('active_plugins');
-        if($waplugins){
-		  if (!in_array($waplugin, $waplugins)) {
-			 array_push($waplugins,$waplugin);
-			 update_option('active_plugins',$waplugins);
-		  }
-		}
-	 } 
-	 ?>
-	 <script language="javascript" type="text/javascript">
-        document.location = "<?php echo admin_url('plugins.php'); ?>";
-      </script>
-<?php 	 
+if(isset($_POST['dpid']) && $_POST['dpid']>0){ 
+	$dpwapObj->dpwap_plugin_all_activate();
 }
 if($_GET['page']=="mul_upload") { ?>
 <div class="wrap pc-wrap">
@@ -54,7 +39,7 @@ if($_GET['page']=="mul_upload") { ?>
 	</div>
 </div>
 <?php } ?>
-			    
+   
 	      
 
 
