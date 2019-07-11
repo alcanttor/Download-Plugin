@@ -1,0 +1,77 @@
+#dpwap-plugin-box{
+    width: 60%;
+    text-align: center;
+    margin: 30px auto;
+}
+.dpwap_h3 {
+  border-bottom: 1px solid #eeee;
+  color: #000;
+  font-size: 22px;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  padding-bottom: 5px;
+  text-transform: capitalize;
+  text-align: left;
+  padding-left: 14px;
+  font-weight: bold;
+}
+#mul_upload {
+    position: absolute;
+    top: 87px;
+    left: 250px;
+}
+
+#dpwap-plugin-box .inside{
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+#dpwap_incompatible{
+    position: absolute;
+    top: 130px;
+    left: 335px;
+}
+.dpwap_main h1{ display: none; }
+.dpwap_inner {
+  width: 29%;
+  border: 1px solid #eee;
+  text-align: left;
+  margin: 10px 1%;
+  padding: 10px;
+  float: left;
+  overflow: hidden;
+  background: #fff;
+  min-height: 230px;
+}
+#dpwap-plugin-box {
+    width: 100%;
+    text-align: center;
+    margin: 30px auto;
+}
+.postbox {
+  position: relative;
+  min-width: auto;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  background: #f1f1f1;
+  overflow: hidden;
+  width: 100%;
+  text-align: center !important;
+}
+.dpwap_main .button.dpwap_allactive {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  background: #0085ba;
+  color: #fff;
+  border: none;
+}
+.dpwap_inner a:last-child {
+  display: none;
+}
+.dpwap_main {
+  position: relative;
+}
+
+
+
