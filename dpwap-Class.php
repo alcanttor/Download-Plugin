@@ -23,13 +23,13 @@ class dpwapuploader
         else{
 		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 		 $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('type', 'title', 'nonce', 'url') ) ); 
-		 echo "<div class='dpwap_inner' id='dpwap_sec_".$dpid."'>";
+		 echo "<div class='dpwap_inner ".$whform."' id='dpwap_sec_".$dpid."'>";
 		 echo "<h4>".basename($package)."</h4>";
 		 $res=$upgrader->install($package);
 		 update_option("dpwap_plugins",$dpid);
 		 echo '<input type="hidden" name="dpid" value="'.$dpid.'">';
 		 echo '<input type="hidden" id="dpwap_plglist" name="dpwap_plglist_'.$dpid.'" value="'.$upgrader->plugin_info().'">';
- 		 echo "</div>";
+ 		
 
 			//remove temp files
 			if($whform == "upload_locFiles"){
@@ -38,8 +38,20 @@ class dpwapuploader
 			
 			if (!$upgrader->plugin_info()){
 				echo $res;
-			}
-		
+			} elseif($dpwap_action =="package_activate"){
+			 	$waplugins = get_option('active_plugins');
+			 	if($waplugins){
+			 		$puginsToActiv = array($upgrader->plugin_info());
+			 		foreach ($puginsToActiv as $waplugin){
+			 			if (!in_array($waplugin, $waplugins)) {
+			 				 array_push($waplugins,$waplugin);
+			 				 update_option('active_plugins',$waplugins);
+			 			}
+			 		}
+			 	}
+			 	_e('<b class="mpi_act">Plugin activated successfully.</b><br/>','mpi');
+			 }
+		 echo "</div>";
         }
     }
 	
@@ -298,6 +310,7 @@ class dpwapuploader
 		if($dpwap_tempurls)
 		$this->dpwap_get_packages($dpwap_tempurls,"activate","nocreate","upload_locFiles");
 	}
+
 
 }
 ?>

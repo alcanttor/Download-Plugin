@@ -58,11 +58,17 @@ add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 // Add new page for download dashboard
 function dpwap_register_menupage(){
     add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
+    add_menu_page('dpwap activate', 'dpwap activate', 'administrator','dpwap-activate', 'dpwap_package_activate_func');
     remove_menu_page('mul_upload');
+    remove_menu_page('dpwap-activate');
   }
 function dpwap_multiple_upload_func()
   {
    require_once 'multiple_upload_plugin.php'; 
+  }
+
+  function dpwap_package_activate_func(){
+  require_once 'feature-package.php'; 	
   }
 add_action( 'admin_menu', 'dpwap_register_menupage' );
 
@@ -169,7 +175,24 @@ function dpwap_plugin_activate_func() {
 }
 add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
 
-  
+ 
+ //user based feature select function
+function dpwap_feature_select_func() { 
+    $waplugin = $_POST['dpwap_feature']; 
+        foreach ($waplugin as $value) {
+     	if($value == 1){ 
+     	$feature1=1;
+     	}elseif (($value >= 2) && ($value <= 8)) {
+   	    $feature2 =1;
+   	    }elseif(($value >= 9) && ($value <= 15)){
+        $feature3 =1;
+   	    }else{  $feature4 =1;   }
+     }
+      require_once 'dpwap-add-feature.php';
+       wp_die(); 
+}
+add_action( 'wp_ajax_dpwap_feature_select', 'dpwap_feature_select_func'); 
+
 /**
  * Add download link to plugins page
  * 

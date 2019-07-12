@@ -1,6 +1,7 @@
 <script language="javascript">
-  jQuery(window).load(function() {  
-   	jQuery('#dpwap_modal').modal();
+  jQuery(window).load(function() { 
+     jQuery('#dpwap_modal').modal();
+   	 
    });
 </script>
 <!-- Modal -->
@@ -37,7 +38,7 @@
                  </div>
 		          </div>
 		          <div class="modal-footer">
-			    <button class="btn btn-default" id="next_first" type="button">Next</button>
+			    <button class="btn btn-default" id="next_first" type="button">Add Even More Features</button>
 				</div>
                     </div>
                     <!-- section first page end -->
@@ -47,14 +48,12 @@
 		            <!-- left column -->
 		            <div class="col-dpwap-4">
 		              <ul>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
+		            	<li><input type="checkbox" name="feature" value="1"> Download installed themes</li>
+		            	<li><input type="checkbox" name="feature" value="2"> Add contact form </li>
+		            	<li><input type="checkbox" name="feature" value="3"> Notified when someone fills form on your site </li>
+		            	<li><input type="checkbox" name="feature" value="4"> Add user registration form </li>
+		            	<li><input type="checkbox" name="feature" value="5"> Add secure login box </li>
+		            	<li><input type="checkbox" name="feature" value="6"> Add private user account area </li>
 		            </ul>
 
 		            	
@@ -62,37 +61,43 @@
 		            <!-- right column -->
 		            <div class="col-dpwap-4">
                      <ul>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
+		            	<li><input type="checkbox" name="feature" value="7"> Check form submissions in dashboard </li>
+		            	<li><input type="checkbox" name="feature" value="8"> Suspend users </li>
+		            	<li><input type="checkbox" name="feature" value="9"> Add user profiles </li>
+		            	<li><input type="checkbox" name="feature" value="10"> Allow users to upload profile pics </li>
+		            	<li><input type="checkbox" name="feature" value="11"> Add additional fields to user profiles </li>
+		            	<li><input type="checkbox" name="feature" value="12"> Create user groups </li>
 		            </ul>
                     
 		            </div>
 		             <div class="col-dpwap-4">
                      <ul>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
-		            	<li><input type="checkbox"> Name of the feature</li>
+		            	<li><input type="checkbox" name="feature" value="13"> Allow users to submit blogs </li>
+		            	<li><input type="checkbox" name="feature" value="14"> Add private messaging </li>
+		            	<li><input type="checkbox" name="feature" value="15"> Publish user directories </li>
+		            	<li><input type="checkbox" name="feature" value="16"> Publish events on site </li>
+		            	<li><input type="checkbox" name="feature" value="17"> Allow users to book events </li>
 		            </ul>
                     
 		            </div>
 		          </div>
-		         
-				<!-- section second page end -->
+		       <!-- section second page end -->
 				<div class="modal-footer">
-			    <button class="btn btn-default" id="next_last" data-dismiss="modal" type="button">Save Changes</button>
+			    <button class="btn btn-default" id="next_second" type="button">Next</button>
 				</div>
 				</div>
+				<!-- section first page start -->
+				<div class="dpwap_section_third" id="dpwap_section_third" style="display: none;">
+				<form action="admin.php?page=dpwap-activate" id="dpwapActivate" method="post">
+				<input type="hidden" name="featureSubmit" value="yes">	
+                <div id="dpwap_third_inner"></div>
+		        <div class="modal-footer">
+		        <button class="btn btn-default" id="back_second" type="button">Back</button>	
+			    <button class="btn btn-default" id="feature_activate" onclick="activateFeaturePLugins();" type="button">Install and Avtivate</button>
+				</div>
+				</form>	
+                    </div>
+                    <!-- section first page end -->
                  <!-- Body end -->
 				</div>
 			    
