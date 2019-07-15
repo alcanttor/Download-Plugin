@@ -251,6 +251,8 @@
 }
 .dpwap_main {
   position: relative;
+  overflow: hidden;
+  clear: both;
 }
 
 .modal-header .close {
@@ -285,3 +287,14 @@
 }
 .package_activate p a.button{ display: none; }
 /*.modActive{ display: block; padding-top: 150px;  }*/
+
+.button.button-primary.dpwap_allactive{
+  display: block;
+  clear: both;
+  width: 150px;
+  margin: 20px auto;
+  border: none;
+  font-size: 16px;
+  padding: 5px;
+  height: auto;
+}

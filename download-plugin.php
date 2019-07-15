@@ -59,17 +59,21 @@ add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 function dpwap_register_menupage(){
     add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
     add_menu_page('dpwap activate', 'dpwap activate', 'administrator','dpwap-activate', 'dpwap_package_activate_func');
+    add_menu_page('dpwap status', 'dpwap status', 'administrator','activate-status', 'dpwap_all_activate_status_func');
     remove_menu_page('mul_upload');
     remove_menu_page('dpwap-activate');
+    remove_menu_page('activate-status');
   }
-function dpwap_multiple_upload_func()
-  {
-   require_once 'multiple_upload_plugin.php'; 
+  function dpwap_multiple_upload_func(){
+    require_once 'multiple_upload_plugin.php'; 
+   }
+  function dpwap_package_activate_func(){
+   require_once 'feature-package.php'; 	
+  }
+  function dpwap_all_activate_status_func(){
+  require_once 'activate-status.php'; 	
   }
 
-  function dpwap_package_activate_func(){
-  require_once 'feature-package.php'; 	
-  }
 add_action( 'admin_menu', 'dpwap_register_menupage' );
 
 // Add download link to plugins bulk action dropdown
@@ -347,8 +351,3 @@ function dpwap_download(){
 }
 add_action( 'admin_init', 'dpwap_download' );
 
-// plugin deactivation function
-function dpwap_plugin_deactivation_function(){
-	delete_option('dpwap_popup_status');
-}
-register_deactivation_hook( __FILE__, 'dpwap_plugin_deactivation_function' );

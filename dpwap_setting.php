@@ -1,5 +1,6 @@
+
 <script language="javascript">
-  jQuery(window).load(function() { 
+  jQuery(window).load(function() {
      jQuery('#dpwap_modal').modal();
    	 
    });

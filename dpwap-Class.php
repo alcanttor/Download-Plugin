@@ -65,10 +65,14 @@ class dpwapuploader
 			 array_push($waplugins,$waplugin);
 			 update_option('active_plugins',$waplugins);
 		  }
+		$plgname= explode("/",$waplugin);
+		echo $plgname[0]."<br>";
+		echo "Plugin activated successfully";  
+		echo "<hr>";
 		}
 	 } 
 	  echo '<script language="javascript" type="text/javascript">';
-      echo 'document.location = "'.admin_url('plugins.php').'"';
+      //echo 'document.location = "'.admin_url('plugins.php').'"';
       echo '</script>';
  }
 	// get plugin information	
@@ -284,7 +288,6 @@ class dpwapuploader
 	function dpwap_plugin_locInstall(){
 		check_admin_referer($this->key);
 		_e('<div class="dpwap_h3">Plugin installation process:</div>','dpwap');
-		echo '<input class="button dpwap_allactive" type="submit" name="dpwap_locInstall" onclick="activateAllPLugins()" value="Activate all">';
 		for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
 			 //echo "<h4>".$dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i]."</h4>";
 

@@ -25,10 +25,11 @@ if($_GET['page']=="mul_upload") { ?>
 					</form>
 					<?php
 						if (isset($_POST['dpwap_locInstall']) && $_FILES['dpwap_locFiles']['name'][0] != ""){
-							echo '<form id="form_alldpwap" name="form_alldpwap" method="post" action="">';
+							echo '<form id="form_alldpwap" name="form_alldpwap" method="post" action="admin.php?page=activate-status">';
 							echo "<div class='dpwap_main'>";
 							$dpwapObj->dpwap_plugin_locInstall();
 							echo "</div>";
+							echo '<input class="button button-primary dpwap_allactive" type="submit" name="dpwap_locInstall" onclick="activateAllPLugins()" value="Activate all">';
 							echo '</form>';
 						}
 					?>
@@ -38,7 +39,7 @@ if($_GET['page']=="mul_upload") { ?>
 		</div>
 	</div>
 </div>
-<?php } ?>
+<?php }  ?>
    
 	      
 
