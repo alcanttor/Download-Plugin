@@ -93,7 +93,7 @@
                 <div id="dpwap_third_inner"></div>
 		        <div class="modal-footer">
 		        <button class="btn btn-default" id="back_second" type="button">Back</button>	
-			    <button class="btn btn-default" id="feature_activate" onclick="activateFeaturePLugins();" type="button">Install and Avtivate</button>
+			    <button class="btn btn-default" id="feature_activate" onclick="activateFeaturePLugins();" type="button">Install and Activate</button>
 				</div>
 				</form>	
                     </div>

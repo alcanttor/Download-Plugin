@@ -103,7 +103,7 @@
   float: left;
   margin: 10px 0;
 }
-
+/*
 .dpwap_section_second ul li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -118,6 +118,20 @@
     line-height: 13px;
       margin-bottom: 14px;
 
+}*/
+.dpwap_section_second ul li input {
+    margin-top: 2px !important;
+}
+.dpwap_section_second ul li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    line-height: 19px;
+    font-size: 12px;
+    padding: 1px 5px;
 }
 .modal-body h4{
   margin: 0;
