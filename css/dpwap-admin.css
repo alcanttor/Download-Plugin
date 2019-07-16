@@ -255,6 +255,10 @@
   clear: both;
 }
 
+.dpwap_inner .wrap .notice{
+  display:none !important;
+}
+
 .modal-header .close {
   margin-top: 0;
   float: right;

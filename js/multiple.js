@@ -54,6 +54,8 @@ jQuery(document).ready(function() {
 
 //feature poup third(suggest theme and plugins) section activated function
    jQuery('#next_second').click(function() {
+    if (jQuery('input[name="feature"]').is(':checked')) {
+       
        jQuery("#dpwap_section_first").hide();
        jQuery('#dpwap_section_second').fadeOut('100');
        jQuery("#dpwap_section_third").show();
@@ -72,7 +74,8 @@ jQuery(document).ready(function() {
             success : function( response ) {
                  jQuery("#dpwap_third_inner").html(response); 
             }
-        }); 
+        });
+        }else { alert("Select at least one Feature "); return false; }   
         });
 //feature poup back button click function
        jQuery('#back_second').click(function() {

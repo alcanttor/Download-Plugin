@@ -65,10 +65,12 @@ class dpwapuploader
 			 array_push($waplugins,$waplugin);
 			 update_option('active_plugins',$waplugins);
 		  }
-		$plgname= explode("/",$waplugin);
-		echo $plgname[0]."<br>";
-		echo "Plugin activated successfully";  
-		echo "<hr>";
+		  if(!empty($waplugin)){
+		  $plgname= explode("/",$waplugin);
+		   echo $plgname[0]."<br>";
+		   echo "Plugin activated successfully";  
+		   echo "<hr>";
+	       }
 		}
 	 } 
 	  echo '<script language="javascript" type="text/javascript">';

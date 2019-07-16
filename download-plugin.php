@@ -351,3 +351,9 @@ function dpwap_download(){
 }
 add_action( 'admin_init', 'dpwap_download' );
 
+// plugin uninstallation
+register_uninstall_hook( __FILE__, 'dpwap_func_uninstall' );
+function dpwap_func_uninstall() {
+    delete_option( 'dpwap_popup_status' );
+}
+
