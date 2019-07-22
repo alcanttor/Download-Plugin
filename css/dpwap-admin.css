@@ -53,6 +53,7 @@
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
   outline: none;
+  margin-top:70px;
 }
 .modal-backdrop {
   position: fixed;
@@ -76,19 +77,18 @@
   border-bottom: 1px solid #e5e5e5;
   min-height: 16.42857143px;
 }
-.modal-header .close {
-  margin-top: -2px;
-  float: right;
-  margin-bottom: 5px;
-}
+
 .modal-title {
-  margin: 5px 0 0 0;
+  margin: 6px 10px;
   line-height: 1.42857143;
 }
 .modal-body {
   position: relative;
   padding: 20px;
   min-height: 250px;
+}
+.dpwap_section_third .modal-body {
+  min-height: 200px;
 }
 .modal-body .row{
   display: flex;
@@ -103,22 +103,6 @@
   float: left;
   margin: 10px 0;
 }
-/*
-.dpwap_section_second ul li {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    min-height: 25px;
-    line-height: 13px;
-      margin-bottom: 14px;
-
-}*/
 .dpwap_section_second ul li input {
     margin-top: 2px !important;
 }
@@ -154,7 +138,7 @@
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
+    width: 660px;
     margin: 30px auto;
   }
   .modal-content {
@@ -259,15 +243,25 @@
   display:none !important;
 }
 
-.modal-header .close {
-  margin-top: 0;
+.modal-head .close {
+  /*margin-top: 0;
   float: right;
   background: #ddd;
   border: navajowhite;
   font-size: 24px;
   margin-top: -5px;
   width: 30px;
-  height: 30px;
+  height: 30px;*/
+
+   position: absolute;
+    right: 0;
+    z-index: 999;
+    color: #fff;
+    background: transparent;
+    border: navajowhite;
+    font-size: 40px;
+    top: -48px;
+
   /* line-height: 0; */
 }
 .modal-header {
@@ -283,7 +277,7 @@
   border-radius: 4px;
 }
 .modal-footer button {
-  background: #787878;
+  background: #FF6501;
   border: 1px solid #ccc;
   padding: 6px 20px;
   border-radius: 4px;
@@ -301,4 +295,16 @@
   font-size: 16px;
   padding: 5px;
   height: auto;
+}
+.img_block img {
+    width: 100%;
+    position: relative;
+}
+#back_second{
+  float: left;
+}
+.footer_note{
+  float: left;
+  font-size: 12px;
+  margin:0 0 20px -20px; 
 }

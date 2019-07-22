@@ -67,15 +67,12 @@ class dpwapuploader
 		  }
 		  if(!empty($waplugin)){
 		  $plgname= explode("/",$waplugin);
-		   echo $plgname[0]."<br>";
+		   echo "<b>".$plgname[0]."</b><br>";
 		   echo "Plugin activated successfully";  
 		   echo "<hr>";
-	       }
+		   }
 		}
 	 } 
-	  echo '<script language="javascript" type="text/javascript">';
-      //echo 'document.location = "'.admin_url('plugins.php').'"';
-      echo '</script>';
  }
 	// get plugin information	
     function dpwap_get_plugin($plugin_name){

@@ -155,7 +155,7 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 //admin multiple upload form
 function dpwap_multiple_upload_admin_func(){
     global $pagenow;
-    if ( $pagenow == 'plugin-install.php' ) {
+    if ( $pagenow == 'plugin-install.php' ) {  
      	$redirect=admin_url('admin.php?page=mul_upload');
     	 echo '<div class="wrap">
               <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
@@ -163,7 +163,6 @@ function dpwap_multiple_upload_admin_func(){
          }
      }
  add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
-
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {

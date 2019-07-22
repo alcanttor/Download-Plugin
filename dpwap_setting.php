@@ -2,23 +2,23 @@
 <script language="javascript">
   jQuery(window).load(function() {
      jQuery('#dpwap_modal').modal();
-   	 
    });
 </script>
 <!-- Modal -->
 <div id="dpwap_modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+		<!-- sk section first page start -->
+			<div class="dpwap_section_first" id="dpwap_section_first">
+			 <div class="modal-head">
 				<button class="close" type="button" data-dismiss="modal">×</button>
-				<img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap_header.jpg'; ?>">
+				<div class="img_block"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap_header.jpg'; ?>">
 					<h4 class="modal-title">New Features Added</h4>
+				</div>
 			 </div>
-			<div class="modal-body">
+			 <div class="modal-body">
 				<!-- body start -->
-				<!-- section first page start -->
-				<div class="dpwap_section_first" id="dpwap_section_first">
-                <div class="row">
+			     <div class="row">
 		            <!-- left column -->
 		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-left-img.jpg'; ?>"></div>
 		            <!-- right column -->
@@ -38,13 +38,21 @@
                      </p>
                  </div>
 		          </div>
-		          <div class="modal-footer">
-			    <button class="btn btn-default" id="next_first" type="button">Add Even More Features</button>
+		           <div class="modal-footer">
+		           	<span class="footer_note">If you wish to know more about how to use these new feature, please <a href="#">read our guide.</a></span>
+			       <button class="btn btn-default" id="next_first" type="button">Add Even More Features!</button>
 				</div>
-                    </div>
-                    <!-- section first page end -->
-                   <!-- section second page start -->
+                </div>
+                </div>
+             <!-- sk section first page end -->
+             <!-- sk section second page start -->
 				   <div class="dpwap_section_second" id="dpwap_section_second" style="display: none;">
+				   	 <div class="modal-head">
+				<button class="close" type="button" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Select the features you wish to add</h4>
+				</div>
+			 <div class="modal-body">
+				<!-- body start -->
                     <div class="row">
 		            <!-- left column -->
 		            <div class="col-dpwap-4">
@@ -82,13 +90,21 @@
                     
 		            </div>
 		          </div>
-		       <!-- section second page end -->
-				<div class="modal-footer">
+              	<div class="modal-footer">
 			    <button class="btn btn-default" id="next_second" type="button">Next</button>
 				</div>
 				</div>
-				<!-- section first page start -->
+			</div>
+			<!-- sk section second page end -->
+			<!-- sk section third page start -->
 				<div class="dpwap_section_third" id="dpwap_section_third" style="display: none;">
+					 <div class="modal-head">
+				<button class="close" type="button" data-dismiss="modal">×</button>
+					<h4 class="modal-title">You are all set! Install and activate our following plugins from wordpress.org to add selected features</h4>
+				</div>
+			
+			 <div class="modal-body">
+				<!-- body start -->
 				<form action="admin.php?page=dpwap-activate" id="dpwapActivate" method="post">
 				<input type="hidden" name="featureSubmit" value="yes">	
                 <div id="dpwap_third_inner"></div>
@@ -97,11 +113,11 @@
 			    <button class="btn btn-default" id="feature_activate" onclick="activateFeaturePLugins();" type="button">Install and Activate</button>
 				</div>
 				</form>	
-                    </div>
-                    <!-- section first page end -->
+                </div>
+                </div>
+             <!-- sk section third page end -->
                  <!-- Body end -->
 				</div>
-			    
 			</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

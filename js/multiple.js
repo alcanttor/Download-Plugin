@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
     if (jQuery('input[name="feature"]').is(':checked')) {
        
        jQuery("#dpwap_section_first").hide();
-       jQuery('#dpwap_section_second').fadeOut('100');
+       jQuery('#dpwap_section_second').fadeOut('10');
        jQuery("#dpwap_section_third").show();
 
             var wpdapFeature = [];
@@ -84,10 +84,24 @@ jQuery(document).ready(function() {
          jQuery("#dpwap_section_third").fadeOut('1000');
        });
  
+//sk admin notice update on click blank download
+    jQuery( document ).on( 'click', '#doaction', function() {
+       var getAction=jQuery('#bulk-action-selector-top').val();
+        var count_checked = jQuery("[name='checked[]']:checked").length;
+        if (getAction=='all_download' && count_checked==0){
+             jQuery("#no-items-selected p").hide();
+             jQuery( "<p>Please select a plugin (or multiple plugins) to begin download.</p>" ).appendTo( "#no-items-selected" );
+            return false;
+          }
+      
+  })
+
+
     });
 
 //feature poup form submit function
 function activateFeaturePLugins(){ 
     document.getElementById('dpwapActivate').submit();
 }
+
 
