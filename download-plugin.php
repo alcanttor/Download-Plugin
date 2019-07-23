@@ -124,7 +124,7 @@ function dpwap_admin_multiple_download_func() {
     global $pagenow;
     if ( $pagenow == 'plugins.php' && $_GET['action']=='mul_download' && $_GET['upload']>0) {
     	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_download_plugins'));
-         foreach ($dpwap_plugins as $arrValue) {
+    	 foreach ($dpwap_plugins as $arrValue) {
 	 	     foreach ($arrValue as $dpwapValue) {  ?>
 	 	       <script language="javascript" type="text/javascript">
 			    var iframe = document.createElement('iframe');
@@ -133,7 +133,7 @@ function dpwap_admin_multiple_download_func() {
 			    document.body.appendChild(iframe);
 	         </script>
 	       <?php } 
-	  }
+	  } delete_option('dpwap_download_plugins');
   }
 }
 add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
