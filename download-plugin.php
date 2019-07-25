@@ -104,13 +104,10 @@ function dpwap_download_bulk_action_handler( $redirect, $doaction, $object_ids )
 		    	 $explode = explode( '/', $value );
 				 $path    = $explode[0];
 				 $folder  = 1;
-				} else {
-				$path   = $value;
-				$folder = 2;
-			   }
-          $downurl="?dpwap_download=".$path."&f=".$folder;
-          $second_array = array($path=>$downurl);
-          $plugins_arr2[] = array_merge((array)$plugins_arr, (array)$second_array); 
+				 $downurl="?dpwap_download=".$path."&f=".$folder;
+                 $second_array = array($path=>$downurl);
+                 $plugins_arr2[] = array_merge((array)$plugins_arr, (array)$second_array); 
+				} 
          }
          $plugins_arry=maybe_serialize($plugins_arr2);
          update_option( 'dpwap_download_plugins', $plugins_arry );
