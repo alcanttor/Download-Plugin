@@ -145,10 +145,10 @@ function dpwap_setting_popup_func() {
 	
     global $pagenow;
     if ( $pagenow == 'plugins.php') {
-      if(!get_option('dpwap_popup_status')){	
+      //if(!get_option('dpwap_popup_status')){	
       require_once 'dpwap_setting.php'; 
-      add_option('dpwap_popup_status',1);	 
-      }
+      //add_option('dpwap_popup_status',1);	 
+      //}
       
   }
 }

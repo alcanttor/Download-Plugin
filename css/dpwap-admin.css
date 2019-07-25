@@ -302,6 +302,9 @@
 }
 #back_second{
   float: left;
+  background: none;
+  color: #333;
+
 }
 .footer_note{
   float: left;
