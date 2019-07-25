@@ -66,10 +66,12 @@ function dpwap_register_menupage(){
   }
   function dpwap_multiple_upload_func(){
     require_once 'multiple_upload_plugin.php'; 
-   }
+  }
+
   function dpwap_package_activate_func(){
    require_once 'feature-package.php'; 	
   }
+
   function dpwap_all_activate_status_func(){
   require_once 'activate-status.php'; 	
   }
@@ -102,7 +104,7 @@ function dpwap_download_bulk_action_handler( $redirect, $doaction, $object_ids )
 		    	 $explode = explode( '/', $value );
 				 $path    = $explode[0];
 				 $folder  = 1;
-				}else {
+				} else {
 				$path   = $value;
 				$folder = 2;
 			   }
@@ -157,7 +159,7 @@ function dpwap_multiple_upload_admin_func(){
     global $pagenow;
     if ( $pagenow == 'plugin-install.php' ) {  
      	$redirect=admin_url('admin.php?page=mul_upload');
-    	 echo '<div class="wrap">
+    	 echo '<div class="wrap" id="btn_upload">
               <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
           </div>';
          }
@@ -263,9 +265,8 @@ function dpwap_delete_temp_folder( $path ){
  * @package Download Plugin
  * @since 1.0.0
  */
-function dpwap_download(){
-	
-	if( is_user_logged_in() && current_user_can( 'activate_plugins' ) && isset( $_GET['dpwap_download'] ) && !empty( $_GET['dpwap_download'] ) && preg_match( "/^[A-Za-z0-9-]+$/", $_GET['dpwap_download'] ) && isset( $_GET['f'] ) && !empty( $_GET['f'] ) ){
+function dpwap_download(){  
+	if( is_user_logged_in() && current_user_can( 'activate_plugins' ) && isset( $_GET['dpwap_download'] ) && !empty( $_GET['dpwap_download'] ) && isset( $_GET['f'] ) && !empty( $_GET['f'] ) ){
 		global $dpwap_all_plugins;
 		$all_plugins    = array_keys( $dpwap_all_plugins );
 		$plugins_arr    = array();

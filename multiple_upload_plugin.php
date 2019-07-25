@@ -1,5 +1,7 @@
 <?php 
 $dpwapObj = new dpwapuploader();
+echo '<style>.notice { display: none; }</style>';
+echo '<style>#dolly { display: none; }</style>';
 if(isset($_POST['dpid']) && $_POST['dpid']>0){ 
 	$dpwapObj->dpwap_plugin_all_activate();
 }

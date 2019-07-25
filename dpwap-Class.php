@@ -120,7 +120,6 @@ class dpwapuploader
     function dpwap_get_packages($plugins_arr,$dpwap_action,$dpwap_cfilenm,$whform)
 	{     
         global $wp_version;
-        
         if (!function_exists('fsockopen')) return false;
         $dpid=1;
         foreach ($plugins_arr as $val){

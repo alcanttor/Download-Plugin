@@ -39,7 +39,7 @@
                  </div>
 		          </div>
 		           <div class="modal-footer">
-		           	<span class="footer_note">If you wish to know more about how to use these new feature, please <a href="#">read our guide.</a></span>
+		           	<span class="footer_note">If you wish to know more about how to use these new feature, please <a href="https://metagauss.com/download-plugin-guide/" target="blank">read our guide.</a></span>
 			       <button class="btn btn-default" id="next_first" type="button">Add Even More Features!</button>
 				</div>
                 </div>
@@ -100,7 +100,8 @@
 				<div class="dpwap_section_third" id="dpwap_section_third" style="display: none;">
 					 <div class="modal-head">
 				<button class="close" type="button" data-dismiss="modal">×</button>
-					<h4 class="modal-title">You are all set! Install and activate our following plugins from wordpress.org to add selected features</h4>
+				    <span id="thirdLoading"></span>
+					<h4 id="title_third" class="modal-title"></h4>
 				</div>
 			
 			 <div class="modal-body">

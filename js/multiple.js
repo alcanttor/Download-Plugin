@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
     if (jQuery('input[name="feature"]').is(':checked')) {
        
        jQuery("#dpwap_section_first").hide();
-       jQuery('#dpwap_section_second').fadeOut('10');
+       jQuery('#dpwap_section_second').hide();
        jQuery("#dpwap_section_third").show();
 
             var wpdapFeature = [];
@@ -71,8 +71,13 @@ jQuery(document).ready(function() {
                 action : 'dpwap_feature_select',
                 dpwap_feature : wpdapFeature
             },
+             beforeSend: function() {
+                jQuery('#thirdLoading').text('Please wait...');
+            },
             success : function( response ) {
-                 jQuery("#dpwap_third_inner").html(response); 
+                 jQuery('#thirdLoading').hide();
+                jQuery('#title_third').text('You are all set! Install and activate our following plugins from wordpress.org to add selected features.');
+                jQuery("#dpwap_third_inner").html(response); 
             }
         });
         }else { alert("Select at least one Feature "); return false; }   
@@ -89,14 +94,23 @@ jQuery(document).ready(function() {
        var getAction=jQuery('#bulk-action-selector-top').val();
         var count_checked = jQuery("[name='checked[]']:checked").length;
         if (getAction=='all_download' && count_checked==0){
-             jQuery("#no-items-selected p").hide();
-             jQuery( "<p>Please select a plugin (or multiple plugins) to begin download.</p>" ).appendTo( "#no-items-selected" );
+             jQuery("#no-items-selected").hide();
+             alert('Please select a plugin (or multiple plugins) to begin download.');
             return false;
           }
       
      })
 
-    });
+    
+
+    var getUpdate = jQuery(".update-nag").attr('class');
+    if(getUpdate=='update-nag'){ 
+      jQuery("#btn_upload").css("margin-top", "74px");
+      }else{ 
+       jQuery("#btn_upload").css("margin-top", "9px"); 
+      }
+
+});
 
 //feature poup form submit function
 function activateFeaturePLugins(){ 

@@ -1,4 +1,3 @@
-<h1 class="wp-heading-inline"> DPWAP Feature Package Install</h1>
 <?php
 $featureObj = new dpwapuploader();
 	if(isset($_POST['featureSubmit']) && $_POST['featureSubmit']=='yes'){

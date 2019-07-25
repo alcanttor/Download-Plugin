@@ -79,7 +79,7 @@
 }
 
 .modal-title {
-  margin: 6px 10px;
+  margin: 18px 10px 0 10px;
   line-height: 1.42857143;
 }
 .modal-body {
@@ -180,9 +180,9 @@
   padding-left: 14px;
   font-weight: bold;
 }
-#mul_upload {
+#btn_upload {
     position: absolute;
-    top: 87px;
+    top: 20px;
     left: 250px;
 }
 
@@ -239,7 +239,7 @@
   clear: both;
 }
 
-.dpwap_inner .wrap .notice{
+.dpwap_inner .wrap .notice, .dpwap_inner .wrap .updated{
   display:none !important;
 }
 
@@ -307,4 +307,13 @@
   float: left;
   font-size: 12px;
   margin:0 0 20px -20px; 
+}
+.modal-head #thirdLoading{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px;
+  display: inline-block;
+  width: 100%;
+  margin-top: 16px;
 }
