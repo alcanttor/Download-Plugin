@@ -88,7 +88,7 @@ jQuery(document).ready(function() {
          jQuery('#dpwap_section_second').show();
          jQuery("#dpwap_section_third").fadeOut('1000');
        });
- 
+ var count_checked = 0;
 //sk admin notice update on click blank download
     jQuery( document ).on( 'click', '#doaction', function() {
        var getAction=jQuery('#bulk-action-selector-top').val();
@@ -97,10 +97,18 @@ jQuery(document).ready(function() {
              jQuery("#no-items-selected").hide();
              alert('Please select a plugin (or multiple plugins) to begin download.');
             return false;
+          }else{
+           jQuery("#dpwapLoader").show();
+           //var counter=0;
+          jQuery("[name='checked[]']:checked").each(function () {
+            var plgname= jQuery(this).val();
+            recursively_ajax(count_checked,plgname);
+        });
+         return false;
+
           }
       
      })
-
     
 
     var getUpdate = jQuery(".update-nag").attr('class');
@@ -112,9 +120,47 @@ jQuery(document).ready(function() {
 
 });
 
+
+
 //feature poup form submit function
 function activateFeaturePLugins(){ 
     document.getElementById('dpwapActivate').submit();
 }
 
 
+var prev_count = 0;
+ function recursively_ajax(count_checked,plgname)
+{
+  // alert(plgname);
+ var pass_data=count_checked;
+         var chartMenu=plgname;
+         jQuery.ajax({
+            type:"POST",
+            async:false, // set async false to wait for previous response
+            url: ajaxurl,
+            dataType:"json",
+            data : {
+                   action : 'dpwap_plugin_download_url',
+                   pluginData : chartMenu
+               },
+                complete: function() {
+                  prev_count++;
+                  // alert(prev_count);
+                 if(prev_count < pass_data){
+                    //recursively_ajax();
+                    
+                  }else{
+                    window.location.href ="plugins.php?action=multiple_download";
+                    //alert('AllZip Created successfully');
+                  }   
+
+                },
+            success: function(data)
+            {
+                // prev_count++;
+                if(prev_count < pass_data){
+                    //recursively_ajax();
+                }
+            }
+    });
+}
