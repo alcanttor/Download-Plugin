@@ -31,6 +31,9 @@ if( !defined( 'DPWAP_URL' ) ) {
 if(!defined('DPWAP_PREFIX')) {
   define('DPWAP_PREFIX', 'dpwap_'); // Plugin Prefix
 }
+if(!defined('DPWAP_PLUGINS_TEMP')) {
+  define('DPWAP_PLUGINS_TEMP', $dpwap_uploadDir['basedir'].'/dpwap_plugins'); // Plugin Prefix
+}
 /**
  * Load text domain
  *
@@ -124,14 +127,17 @@ function dpwap_admin_multiple_download_func() {
     if ( $pagenow == 'plugins.php' && $_GET['action']=='multiple_download') {
     	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
     	  foreach($dpwap_plugins as $pluginUrl){
-    	   $downUrl=basename($pluginUrl);
+    	   $downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
      	   ?>
      	    <script language="javascript" type="text/javascript">
-     	    	window.open("<?php echo site_url()."/wp-content/plugins/".$downUrl; ?>");
-     	     </script>
+     	    	//window.open("<?php echo $downUrl; ?>");
+     	        var iframe = document.createElement('iframe');
+			     iframe.src = "<?php echo $downUrl; ?>";
+			     iframe.style.display = 'none';
+			    document.body.appendChild(iframe);
+	         </script>
 	       <?php  
            }
-           delete_option('dpwap_downloads_url');
     	
   }
 }
@@ -140,14 +146,37 @@ add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
 
 //all plugins activate get ajax response code
 function dpwap_plugin_multiple_download_func() {
-   $dpwap_download = $_POST['pluginData'];
+	// echo '<pre>';
+	// print_r($_POST);
+	// echo '</pre>';
+	// die('I am here');
+	$strPluginCount = (isset($_POST['plugin_count'])) ? $_POST['plugin_count'] : '0';
+	if($strPluginCount== '1'){
+		delete_option("dpwap_downloads_url");
+		if(file_exists( DPWAP_PLUGINS_TEMP ) ) {
+		  $folder=DPWAP_PLUGINS_TEMP;
+		  $files = glob("$folder/*");
+	      foreach($files as $file){
+			unlink($file);
+		   }
+	 	 }
+ 	 }
+	
+	$dpwap_download = $_POST['pluginData'];
      $dpwap_download_base = basename( $dpwap_download, '.php' );
    
         $explode = explode( '/', $dpwap_download );
 		$folderpath    = $explode[0];
 
+		if(!file_exists( DPWAP_PLUGINS_TEMP ) ) {
+		   mkdir( DPWAP_PLUGINS_TEMP, 0777, true );
+		   delete_option("dpwap_downloads_url");
+		 }
+
+	
+
 				$folder_path  = WP_PLUGIN_DIR.'/'.$folderpath;
-				$zipPath=$folder_path.'.zip';
+				$zipPath=$folderpath.'.zip';
 				if($geturls=get_option("dpwap_downloads_url")){
 				$getDwnurls=maybe_unserialize($geturls);
                 array_push($getDwnurls,$zipPath);
@@ -155,20 +184,15 @@ function dpwap_plugin_multiple_download_func() {
 				update_option("dpwap_downloads_url",$plugins_arry);
                 }else{ 
                     $plugins_arry[]=$zipPath;
-                	update_option("dpwap_downloads_url",$plugins_arry); }
-
- 	          if( !file_exists( $folder_path ) ) {
-					mkdir( $folder_path, 0777, true );
-				}
+                	update_option("dpwap_downloads_url",$plugins_arry); 
+                }
+ 	          
 				
-				$source       = $dpwap_download_base.'.php';
-				$destination  = $folder_path.'/'.$dpwap_download_base.'.php';
-				
-				copy( $source, $destination );
+				$rlpath=DPWAP_PLUGINS_TEMP.'/'.$folderpath;
 				$root_path    = realpath( $folder_path );
 			
 			$zip = new ZipArchive();
-			$zip->open( $folder_path.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+			$zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 			
 			$files = new RecursiveIteratorIterator(
 			    new RecursiveDirectoryIterator( $root_path ),
@@ -180,12 +204,11 @@ function dpwap_plugin_multiple_download_func() {
 				if ( !$file->isDir() ){
 			        
 					$file_path	   = $file->getRealPath();
-			        $relative_path = substr( $file_path, strlen( $root_path ) + 1 );
-			        
+				    $relative_path = substr( $file_path, strlen( $root_path ) + 1 );
 			        $zip->addFile( $file_path, $relative_path );
 			    }
 			}
-			
+
 			$zip->close();
 			$zip_file = $folder_path.'.zip';
 			if( file_exists( $zip_file ) ) {
@@ -222,7 +245,8 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 
 
 function wpdap_custom_admin_head_loader() {
-	echo "<div id='dpwapLoader'></div>";
+	$imgUrl = DPWAP_URL.'images/loader.gif';
+	echo "<div id='dpwapLoader'><img src='{$imgUrl}'></div>";
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
 

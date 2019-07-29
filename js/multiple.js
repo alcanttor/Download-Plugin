@@ -102,7 +102,7 @@ jQuery(document).ready(function() {
            //var counter=0;
           jQuery("[name='checked[]']:checked").each(function () {
             var plgname= jQuery(this).val();
-            recursively_ajax(count_checked,plgname);
+            dpwap_recursively_download(count_checked,plgname);
         });
          return false;
 
@@ -129,7 +129,7 @@ function activateFeaturePLugins(){
 
 
 var prev_count = 0;
- function recursively_ajax(count_checked,plgname)
+ function dpwap_recursively_download(count_checked,plgname)
 {
   // alert(plgname);
  var pass_data=count_checked;
@@ -141,11 +141,11 @@ var prev_count = 0;
             dataType:"json",
             data : {
                    action : 'dpwap_plugin_download_url',
-                   pluginData : chartMenu
+                   pluginData : chartMenu,
+                   plugin_count : prev_count+1
                },
                 complete: function() {
                   prev_count++;
-                  // alert(prev_count);
                  if(prev_count < pass_data){
                     //recursively_ajax();
                     

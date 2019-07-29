@@ -1,4 +1,4 @@
-<?php 
+<?php  
 $dpwapObj = new dpwapuploader();
 echo '<style>.notice { display: none; }</style>';
 echo '<style>#dolly { display: none; }</style>';
