@@ -14,14 +14,15 @@ if($_GET['page']=="mul_upload") { ?>
 		<div id="dpwap-plugin-box" class="dpwap-meta-box">
 			<div class="postbox">
 				<div class="handlediv" title="Click to toggle"><br/></div>
-				<h3 class="hndle"><span><?php _e('You can select and upload multiple Plugins in .ZIP format','dpwap'); ?></span></h3>
+				<h3 class="hndle"><span><?php _e('You can select and upload multiple Plugins in .zip format','dpwap'); ?></span></h3>
 				<div class="inside">
 					<br/>
 					<form onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
 						<?php wp_nonce_field($dpwapObj->key); ?>
 						<div>					
-							<input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" />
-							<input class="button button-primary mpi_button" type="submit" name="dpwap_locInstall" value="<?php _e('Install & Activate plugins &raquo;','dpwap'); ?>"  />
+							<!-- <input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" /> -->
+							<input type="file" class="mpi_left middle sm_select_file" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" />
+							<input class="button button-primary mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now &raquo;','dpwap'); ?>"  />
 							<div class="dpwap_clear"></div>
 						</div>
 					</form>
@@ -41,6 +42,21 @@ if($_GET['page']=="mul_upload") { ?>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	  jQuery(document).ready(function(){
+	  jQuery('.sm_btn_hide').attr("disabled", "disabled");
+
+        jQuery('input[type="file"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            		jQuery('.sm_btn_hide').removeAttr("disabled", "disabled");
+
+        });
+    });
+	
+
+</script>
 <?php }  ?>
    
 	      

@@ -6,7 +6,7 @@
 }
 .update-nag
 {
-	display: block;
+  display: block;
 }
 .modal-open {
   overflow: hidden;
@@ -216,11 +216,15 @@
 .postbox {
   position: relative;
   min-width: auto;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  border: 0 transparent !important;
+  box-shadow: none !important;
   background: #f1f1f1;
   overflow: hidden;
   width: 100%;
+}
+.postbox .hndle, .stuffbox .hndle{
+  
+  border-bottom: 0 transparent !important;
 }
 .dpwap_main .button.dpwap_allactive {
   position: absolute;
@@ -237,6 +241,19 @@
   position: relative;
   overflow: hidden;
   clear: both;
+}
+.postbox .inside{
+  padding:0 !important;
+}
+.toplevel_page_activate-status #wpfooter{
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    color: #555d66;
+    bottom: 0 !important;
+    position: fixed !important;
+    background-color:#aba7a714;
+
 }
 
 .dpwap_inner .wrap .notice, .dpwap_inner .wrap .updated{
@@ -287,18 +304,55 @@
 /*.modActive{ display: block; padding-top: 150px;  }*/
 
 .button.button-primary.dpwap_allactive{
-  display: block;
-  clear: both;
-  width: 150px;
-  margin: 20px auto;
-  border: none;
-  font-size: 16px;
-  padding: 5px;
-  height: auto;
+    display: block;
+    clear: both;
+    width: 150px;
+    margin: 20px auto;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+    height: auto;
+    position: absolute;
+    top: 65px;
+    /* padding: 15px; */
+    left: 222px;
 }
 .img_block img {
     width: 100%;
     position: relative;
+}
+.hndle {
+    font-weight: normal;
+}
+input[type=file] {
+  cursor: pointer;
+  width: auto;
+  height: 34px;
+  overflow: visible;
+}
+
+input[type=file]:before {
+  width: 135px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 32px;
+  content: 'Select your file';
+  display: inline-block;
+  background: #b7b5b538;
+  border: 1px solid #cecece;
+  padding: 0 5px;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  position: relative;
+  left: -100px;
+  top: -8px;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input.middle:focus {
+    outline-width: 0;
 }
 #back_second{
   float: left;
@@ -332,16 +386,16 @@
   background-color: rgba(0,0,0,0.3);
 }
 
-#dpwapLoader{
- position: fixed;
-  z-index: 999;
-  height: 2em;
-  width: 2em;
-  overflow: visible;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: none;
+
+#dpwapLoader {
+    position: fixed;
+    z-index: 999;
+    overflow: visible;
+    margin: auto;
+    top: 40%;
+    left: 43%;
+    display: none;
+    align-items: center;
+    transform: translateY(-50%, -50%);
+    left: 43%;
 }

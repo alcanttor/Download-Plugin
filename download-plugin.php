@@ -138,7 +138,7 @@ function dpwap_admin_multiple_download_func() {
 	         </script>
 	       <?php  
            }
-    	
+    	delete_option("dpwap_downloads_url");
   }
 }
 add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
@@ -152,7 +152,6 @@ function dpwap_plugin_multiple_download_func() {
 	// die('I am here');
 	$strPluginCount = (isset($_POST['plugin_count'])) ? $_POST['plugin_count'] : '0';
 	if($strPluginCount== '1'){
-		delete_option("dpwap_downloads_url");
 		if(file_exists( DPWAP_PLUGINS_TEMP ) ) {
 		  $folder=DPWAP_PLUGINS_TEMP;
 		  $files = glob("$folder/*");
@@ -170,7 +169,6 @@ function dpwap_plugin_multiple_download_func() {
 
 		if(!file_exists( DPWAP_PLUGINS_TEMP ) ) {
 		   mkdir( DPWAP_PLUGINS_TEMP, 0777, true );
-		   delete_option("dpwap_downloads_url");
 		 }
 
 	

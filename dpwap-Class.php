@@ -67,9 +67,11 @@ class dpwapuploader
 		  }
 		  if(!empty($waplugin)){
 		  $plgname= explode("/",$waplugin);
-		   echo "<b>".$plgname[0]."</b><br>";
-		   echo "Plugin activated successfully";  
-		   echo "<hr>";
+		echo "<b>".$plgname[0].".zip</b><br>";
+		echo '<p>Unpacking the package...</p>';
+		echo '<p>Installing the plugin...</p>';
+		echo '<p>Plugin installed sucessfully.</p>';
+		echo "<hr>";
 		   }
 		}
 	 } 
