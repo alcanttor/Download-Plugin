@@ -104,12 +104,13 @@ jQuery(document).ready(function() {
            //var counter=0;
            if(getAction == "all_download"){
             jQuery("#dpwapLoader").show();
-             setTimeout(function(){
+             
             jQuery("[name='checked[]']:checked").each(function () {
                 var plgname= jQuery(this).val();
+              setTimeout(function(){
                 dpwap_recursively_download(count_checked,plgname);
+               }, 3000); 
             });
-          }, 500); 
           
          return false;
            }
@@ -155,6 +156,7 @@ if(jQuery("#activate_yes").length!=0){
      jQuery(".dpwap_allactive").show();
 }
 
+jQuery('#btn_upload').nextUntil('.plugin-install-tab-featured').remove('div');
 
 });
 

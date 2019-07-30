@@ -198,8 +198,10 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 
 
 function wpdap_custom_admin_head_loader() {
-	$imgUrl = DPWAP_URL.'images/loader.gif';
-	echo "<div id='dpwapLoader'><img src='{$imgUrl}'></div>";
+	$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
+	echo "<div id='dpwapLoader'>";
+    echo  "<img src='{$imgUrl}'>";
+	echo "<p>This may take few minutes based on the number and size of the plugins</p></div>";
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
 

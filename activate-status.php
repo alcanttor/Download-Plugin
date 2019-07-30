@@ -11,7 +11,7 @@ if(isset($_POST['dpid']) && $_POST['dpid']>0){  ?>
                      delete_option("dpwap_plugins");
 					?>
 				</div>
-				<span><a href="plugin-install.php"><?php _e('Return to Plugin Installer ','dpwap'); ?></span>
+				<span><a class='' href="plugin-install.php"><input type="button" class="button button-primary" value="Return to Plugin Installer"></span>
 			</div>		
 		</div>
 	</div>

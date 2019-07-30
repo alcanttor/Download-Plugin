@@ -325,14 +325,15 @@
 .hndle {
     font-weight: normal;
 }
-input[type=file] {
+
+#dpwap-plugin-box input[type=file] {
   cursor: pointer;
   width: auto;
   height: 34px;
   overflow: visible;
 }
 
-input[type=file]:before {
+#dpwap-plugin-box input[type=file]:before {
   width: 135px;
   height: 32px;
   font-size: 14px;
@@ -349,10 +350,10 @@ input[type=file]:before {
   top: -8px;
 }
 
-input[type=file]::-webkit-file-upload-button {
+#dpwap-plugin-box input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
 }
-input.middle:focus {
+#dpwap-plugin-box input.middle:focus {
     outline-width: 0;
 }
 #back_second{
@@ -376,13 +377,16 @@ input.middle:focus {
   margin-top: 16px;
 }
 
+.dpwap_inner .wrap div{
+  display: none;
+}
 #dpwapLoader {
     position: fixed;
     z-index: 999;
     overflow: visible;
     margin: auto;
     display: none;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.8);
     height: 100%;
     width: 100%;
     left: 0;
@@ -395,4 +399,32 @@ input.middle:focus {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+}
+#dpwapLoader p {
+    position: absolute;
+    z-index: 9999;
+    font-size: 32px;
+    top: 50%;
+    left: auto;
+    transform: translateY(-50% -50%) !IMPORTANT;
+    text-align: center;
+    padding: 0 10%;
+    text-transform: none;
+    font-size: 25px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #777, #fff, #777);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 7s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
 }

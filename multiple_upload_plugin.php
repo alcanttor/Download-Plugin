@@ -14,9 +14,9 @@ if($_GET['page']=="mul_upload") { ?>
 		<div id="dpwap-plugin-box" class="dpwap-meta-box">
 			<div class="postbox">
 				<div class="handlediv" title="Click to toggle"><br/></div>
+				<div id="dpwap-plugin-zipbox">
 				<h3 class="hndle"><span><?php _e('You can select and upload multiple Plugins in .zip format','dpwap'); ?></span></h3>
-				<div class="inside">
-					<br/>
+									<br/>
 					<form onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
 						<?php wp_nonce_field($dpwapObj->key); ?>
 						<div>					
@@ -26,6 +26,8 @@ if($_GET['page']=="mul_upload") { ?>
 							<div class="dpwap_clear"></div>
 						</div>
 					</form>
+				</div>
+					<div class="inside">
 					<?php
 						if (isset($_POST['dpwap_locInstall']) && $_FILES['dpwap_locFiles']['name'][0] != ""){
 							echo '<form id="form_alldpwap" name="form_alldpwap" method="post" action="admin.php?page=activate-status">';
