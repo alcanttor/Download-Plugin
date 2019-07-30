@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
 
   //feature poup second section activated function
    jQuery('#next_first').click(function() {
-       jQuery('#dpwap_section_first').fadeOut('1000');
+       jQuery('#dpwap_section_first').hide();
        jQuery("#dpwap_section_second").show();
    });
 
@@ -86,30 +86,62 @@ jQuery(document).ready(function() {
        jQuery('#back_second').click(function() {
          jQuery("#dpwap_section_first").hide();
          jQuery('#dpwap_section_second').show();
-         jQuery("#dpwap_section_third").fadeOut('1000');
+         jQuery("#dpwap_section_third").hide();
        });
+
  var count_checked = 0;
-//sk admin notice update on click blank download
-    jQuery( document ).on( 'click', '#doaction', function() {
+//sk admin onclick top apply button multiple plugin download
+    jQuery( document ).on( 'click', '#doaction', function() { 
+
        var getAction=jQuery('#bulk-action-selector-top').val();
-        var count_checked = jQuery("[name='checked[]']:checked").length;
+       var count_checked = jQuery("[name='checked[]']:checked").length;
+
         if (getAction=='all_download' && count_checked==0){
              jQuery("#no-items-selected").hide();
              alert('Please select a plugin (or multiple plugins) to begin download.');
             return false;
           }else{
-           jQuery("#dpwapLoader").show();
            //var counter=0;
-          jQuery("[name='checked[]']:checked").each(function () {
-            var plgname= jQuery(this).val();
-            dpwap_recursively_download(count_checked,plgname);
-        });
+           if(getAction == "all_download"){
+            jQuery("#dpwapLoader").show();
+             setTimeout(function(){
+            jQuery("[name='checked[]']:checked").each(function () {
+                var plgname= jQuery(this).val();
+                dpwap_recursively_download(count_checked,plgname);
+            });
+          }, 500); 
+          
          return false;
-
-          }
-      
-     })
+           }
+        }
+     });
     
+    //sk admin onclick bottom apply button multiple plugin download
+        jQuery( document ).on( 'click', '#doaction2', function() { 
+
+       var getAction=jQuery('#bulk-action-selector-bottom').val();
+       var count_checked = jQuery("[name='checked[]']:checked").length;
+
+        if (getAction=='all_download' && count_checked==0){
+             jQuery("#no-items-selected").hide();
+             alert('Please select a plugin (or multiple plugins) to begin download.');
+            return false;
+          }else{
+           //var counter=0;
+           if(getAction == "all_download"){
+            jQuery("#dpwapLoader").show();
+            jQuery("[name='checked[]']:checked").each(function () {
+              var plgname= jQuery(this).val();
+              setTimeout(function(){
+                dpwap_recursively_download(count_checked,plgname);
+                 }, 3000); 
+            });
+         
+          
+         return false;
+           }
+        }
+     });
 
     var getUpdate = jQuery(".update-nag").attr('class');
     if(getUpdate=='update-nag'){ 
@@ -117,6 +149,12 @@ jQuery(document).ready(function() {
       }else{ 
        jQuery("#btn_upload").css("margin-top", "9px"); 
       }
+
+
+if(jQuery("#activate_yes").length!=0){
+     jQuery(".dpwap_allactive").show();
+}
+
 
 });
 

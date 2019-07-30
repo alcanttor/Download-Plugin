@@ -15,6 +15,11 @@ $featureObj = new dpwapuploader();
 	 if($_POST['event_prime']==1){
 	    $plugins[] = 'https://downloads.wordpress.org/plugin/eventprime-event-calendar-management.1.2.4.zip';
 	 }
+     
+     if(!is_dir(DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp')){
+		  $feat_upload_dir = DPWAPUPLOADDIR_PATH . '/dpwap_logs/files/tmp';
+          mkdir($feat_upload_dir, 0777,true);
+	 }
 
 	$temp_upload_dir = DPWAPUPLOADDIR_PATH . '/dpwap_logs/files/tmp';
 	foreach ($plugins as $pkgPath) {

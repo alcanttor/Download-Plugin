@@ -26,6 +26,7 @@ class dpwapuploader
 		 echo "<div class='dpwap_inner ".$whform."' id='dpwap_sec_".$dpid."'>";
 		 echo "<h4>".basename($package)."</h4>";
 		 $res=$upgrader->install($package);
+		 if($res){ echo "<div id='activate_yes'></div>"; }
 		 update_option("dpwap_plugins",$dpid);
 		 echo '<input type="hidden" name="dpid" value="'.$dpid.'">';
 		 echo '<input type="hidden" id="dpwap_plglist" name="dpwap_plglist_'.$dpid.'" value="'.$upgrader->plugin_info().'">';
@@ -287,7 +288,7 @@ class dpwapuploader
 		
 	function dpwap_plugin_locInstall(){
 		check_admin_referer($this->key);
-		_e('<div class="dpwap_h3">Plugin installation process:</div>','dpwap');
+        _e('<div class="dpwap_h3">Installing Plugins:</div>','dpwap');
 		for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
 			 //echo "<h4>".$dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i]."</h4>";
 
