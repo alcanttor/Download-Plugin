@@ -334,7 +334,7 @@
 }
 
 #dpwap-plugin-box input[type=file]:before {
-  width: 135px;
+  width: 130px;
   height: 32px;
   font-size: 14px;
   line-height: 32px;
@@ -346,7 +346,7 @@
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
   position: relative;
-  left: -100px;
+  left: -60px;
   top: -8px;
 }
 
@@ -379,6 +379,13 @@
 
 .dpwap_inner .wrap div{
   display: none;
+}
+.dpwap_multiple_upload_form {
+    background: #FFF;
+    border: 1px solid #e5e5e5;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 460px;
 }
 #dpwapLoader {
     position: fixed;

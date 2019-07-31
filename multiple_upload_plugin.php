@@ -17,12 +17,12 @@ if($_GET['page']=="mul_upload") { ?>
 				<div id="dpwap-plugin-zipbox">
 				<h3 class="hndle"><span><?php _e('You can select and upload multiple Plugins in .zip format','dpwap'); ?></span></h3>
 									<br/>
-					<form onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
+					<form class="dpwap_multiple_upload_form" onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
 						<?php wp_nonce_field($dpwapObj->key); ?>
 						<div>					
 							<!-- <input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" /> -->
 							<input type="file" class="mpi_left middle sm_select_file" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" />
-							<input class="button button-primary mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now &raquo;','dpwap'); ?>"  />
+							<input class="button button-primary mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now','dpwap'); ?>"  />
 							<div class="dpwap_clear"></div>
 						</div>
 					</form>

@@ -19,7 +19,7 @@ function check_valid_zipfile(dpwap_eleId){
 }
 
 //all plugins form submit  function
-function activateAllPLugins(){ 
+function activateAllPLugins(){
 	document.getElementById('form_alldpwap').submit();
 }
 
@@ -106,13 +106,12 @@ jQuery(document).ready(function() {
             jQuery("#dpwapLoader").show();
              
             jQuery("[name='checked[]']:checked").each(function () {
-                var plgname= jQuery(this).val();
+              var plgname= jQuery(this).val();
               setTimeout(function(){
                 dpwap_recursively_download(count_checked,plgname);
                }, 3000); 
             });
-          
-         return false;
+           return false;
            }
         }
      });
@@ -136,25 +135,28 @@ jQuery(document).ready(function() {
               setTimeout(function(){
                 dpwap_recursively_download(count_checked,plgname);
                  }, 3000); 
-            });
-         
-          
-         return false;
+             });
+            return false;
            }
         }
      });
 
-    var getUpdate = jQuery(".update-nag").attr('class');
-    if(getUpdate=='update-nag'){ 
+var getUpdate = jQuery(".update-nag").attr('class');
+  if(getUpdate=='update-nag'){ 
       jQuery("#btn_upload").css("margin-top", "74px");
-      }else{ 
+   }else{ 
        jQuery("#btn_upload").css("margin-top", "9px"); 
-      }
+   }
 
 
 if(jQuery("#activate_yes").length!=0){
      jQuery(".dpwap_allactive").show();
 }
+
+if(jQuery("#form_alldpwap").length!=0){
+     jQuery("#dpwap-plugin-zipbox").hide();
+}
+
 
 jQuery('#btn_upload').nextUntil('.plugin-install-tab-featured').remove('div');
 
