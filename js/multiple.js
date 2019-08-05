@@ -114,7 +114,7 @@ jQuery(document).ready(function() {
             jQuery("[name='checked[]']:checked").each(function () {
               var plgname= jQuery(this).val();
               setTimeout(function(){
-                dpwap_recursively_download(count_checked,plgname);
+                //dpwap_recursively_download(count_checked,plgname);
                }, 3000); 
             });
           }else{ alert('Max. 30 downloads are supported at a time'); }
@@ -196,10 +196,6 @@ var prev_count = 0;
                    pluginData : chartMenu,
                    plugin_count : prev_count+1
                },
-                // error: function(xhr, status, error){
-                //   alert("Error!" + xhr.status);
-                //   return false;
-                // },
                 complete: function() {
                   prev_count++;
                  if(prev_count < pass_data){

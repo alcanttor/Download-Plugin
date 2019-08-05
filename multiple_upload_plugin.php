@@ -19,7 +19,7 @@ if($_GET['page']=="mul_upload") { ?>
 									<br/>
 					<form class="dpwap_multiple_upload_form" onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
 						<?php wp_nonce_field($dpwapObj->key); ?>
-						<div>					
+						<div class="upload-section-btn">					
 							<!-- <input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" /> -->
 							<input type="file" class="mpi_left middle sm_select_file" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" />
 							<input id="install_button" class="button mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now','dpwap'); ?>"  />

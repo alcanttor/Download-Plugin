@@ -340,6 +340,9 @@
   height: 34px;
   overflow: visible;
 }
+.upload-section-btn {
+    position: relative;
+}
 
 #dpwap-plugin-box input[type=file]:before {
   width: 130px;
@@ -353,9 +356,9 @@
   padding: 0 5px;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
-  position: relative;
-  left: -60px;
-  top: -8px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 #dpwap-plugin-box input[type=file]::-webkit-file-upload-button {
@@ -404,7 +407,7 @@
     background: rgba(0,0,0,0.8);
     height: 100%;
     width: 100%;
-    left: 0;
+    left: 5%;
     top: 0;
     text-align: center;
 }
@@ -419,27 +422,15 @@
     position: absolute;
     z-index: 9999;
     font-size: 32px;
+    color: #fff;
     top: 50%;
-    left: auto;
+    left: 5%;
     transform: translateY(-50% -50%) !IMPORTANT;
     text-align: center;
     padding: 0 10%;
     text-transform: none;
     font-size: 25px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     overflow: hidden;
-    background: linear-gradient(90deg, #777, #fff, #777);
-    background-repeat: no-repeat;
-    background-size: 80%;
-    animation: animate 7s linear infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0);
-}
-@keyframes animate {
-  0% {
-    background-position: -500%;
-  }
-  100% {
-    background-position: 500%;
-  }
+    
 }
