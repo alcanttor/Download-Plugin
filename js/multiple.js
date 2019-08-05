@@ -114,7 +114,7 @@ jQuery(document).ready(function() {
             jQuery("[name='checked[]']:checked").each(function () {
               var plgname= jQuery(this).val();
               setTimeout(function(){
-                //dpwap_recursively_download(count_checked,plgname);
+                dpwap_recursively_download(count_checked,plgname);
                }, 3000); 
             });
           }else{ alert('Max. 30 downloads are supported at a time'); }
