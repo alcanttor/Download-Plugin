@@ -22,7 +22,7 @@ if($_GET['page']=="mul_upload") { ?>
 						<div>					
 							<!-- <input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" /> -->
 							<input type="file" class="mpi_left middle sm_select_file" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" />
-							<input class="button button-primary mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now','dpwap'); ?>"  />
+							<input id="install_button" class="button mpi_button sm_btn_hide" type="submit" name="dpwap_locInstall" value="<?php _e('Install Now','dpwap'); ?>"  />
 							<div class="dpwap_clear"></div>
 						</div>
 					</form>

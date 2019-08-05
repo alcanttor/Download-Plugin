@@ -206,7 +206,7 @@
   float: left;
   overflow: hidden;
   background: #fff;
-  min-height: 230px;
+  min-height: 245px;
 }
 #dpwap-plugin-box {
     width: 100%;
@@ -313,7 +313,7 @@
     padding: 5px;
     height: auto;
     position: absolute;
-    top: 65px;
+    top: 20px;
     /* padding: 15px; */
     left: 222px;
     display: none;
@@ -324,6 +324,14 @@
 }
 .hndle {
     font-weight: normal;
+}
+
+#install_button{
+  color: #555;
+  border-color: #ccc;
+  background: #f7f7f7;
+  box-shadow: 0 1px 0 #ccc;
+  text-shadow: none !important;
 }
 
 #dpwap-plugin-box input[type=file] {

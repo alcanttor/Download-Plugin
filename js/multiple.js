@@ -6,16 +6,20 @@ function check_valid_zipfile(dpwap_eleId){
 	var	extension = ".zip";
 	var inp = document.getElementById(dpwap_eleId);
     var count = inp.files.length;
-    for(var a=0; a < count; a++){
-		var fieldvalue = inp.files.item(a).name;
-		var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
-		if(thisext == extension){ 
-		return true; 
-		}
+    if(count<=20){
+      for(var a=0; a < count; a++){
+  		var fieldvalue = inp.files.item(a).name;
+  		var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
+  		if(thisext == extension){ 
+  		return true; 
+  		}
+      }
+      	alert("Please upload vaild .zip extension file.");
+      	return false;
+       }else{
+     alert("the maximum number of uploads 20 allowed.");
+     return false;
     }
-
-	alert("Please upload vaild .zip extension file.");
-	return false;
 }
 
 //all plugins form submit  function
@@ -103,6 +107,8 @@ jQuery(document).ready(function() {
           }else{
            //var counter=0;
            if(getAction == "all_download"){
+           	  var maxAllowed = 30;
+           	if (count_checked <= maxAllowed) {
             jQuery("#dpwapLoader").show();
              
             jQuery("[name='checked[]']:checked").each(function () {
@@ -111,6 +117,7 @@ jQuery(document).ready(function() {
                 dpwap_recursively_download(count_checked,plgname);
                }, 3000); 
             });
+          }else{ alert('the maximum number of downloads 30 allowed'); }
            return false;
            }
         }
@@ -129,6 +136,8 @@ jQuery(document).ready(function() {
           }else{
            //var counter=0;
            if(getAction == "all_download"){
+           	  var maxAllowed = 30;
+           	if (count_checked <= maxAllowed) {
             jQuery("#dpwapLoader").show();
             jQuery("[name='checked[]']:checked").each(function () {
               var plgname= jQuery(this).val();
@@ -136,6 +145,7 @@ jQuery(document).ready(function() {
                 dpwap_recursively_download(count_checked,plgname);
                  }, 3000); 
              });
+            }else{ alert('the maximum number of downloads 30 allowed'); }
             return false;
            }
         }
@@ -186,6 +196,10 @@ var prev_count = 0;
                    pluginData : chartMenu,
                    plugin_count : prev_count+1
                },
+                error: function(xhr, status, error){
+                  alert("Error!" + xhr.status);
+                  return false;
+                },
                 complete: function() {
                   prev_count++;
                  if(prev_count < pass_data){
