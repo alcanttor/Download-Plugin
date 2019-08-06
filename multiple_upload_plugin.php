@@ -5,7 +5,9 @@ echo '<style>#dolly { display: none; }</style>';
 if(isset($_POST['dpid']) && $_POST['dpid']>0){ 
 	$dpwapObj->dpwap_plugin_all_activate();
 }
-if($_GET['page']=="mul_upload") { ?>
+if($_GET['page']=="mul_upload") { 
+	$max_size_upload = (int)(ini_get('upload_max_filesize'));
+?>
 <div class="wrap pc-wrap">
 	<div class="mpiicon icon32"></div>
 	<div id="mpiblock">
@@ -17,7 +19,7 @@ if($_GET['page']=="mul_upload") { ?>
 				<div id="dpwap-plugin-zipbox">
 				<h3 class="hndle"><span><?php _e('You can select and upload multiple Plugins in .zip format','dpwap'); ?></span></h3>
 									<br/>
-					<form class="dpwap_multiple_upload_form" onsubmit="return check_valid_zipfile('dpwap_locFiles');" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
+					<form class="dpwap_multiple_upload_form" onsubmit="return check_valid_zipfile('dpwap_locFiles',<?php echo $max_size_upload; ?>);" name="form_uppcs" method="post" action="" enctype="multipart/form-data">
 						<?php wp_nonce_field($dpwapObj->key); ?>
 						<div class="upload-section-btn">					
 							<!-- <input type="file" class="mpi_left" name="dpwap_locFiles[]" id="dpwap_locFiles" multiple="multiple" size="40" /> -->

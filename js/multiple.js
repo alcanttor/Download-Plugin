@@ -2,20 +2,24 @@
 -------------------------------------------------------*/
 
 //validate upload plugin and check ZIP
-function check_valid_zipfile(dpwap_eleId){ 
-	var	extension = ".zip";
-	var inp = document.getElementById(dpwap_eleId);
+function check_valid_zipfile(dpwap_eleId,max_size_upload){ 
+  var extension = ".zip";
+  var maxSize=max_size_upload*1048576;
+  var inp = document.getElementById(dpwap_eleId);
     var count = inp.files.length;
     if(count<=20){
       for(var a=0; a < count; a++){
-  		var fieldvalue = inp.files.item(a).name;
-  		var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
-  		if(thisext == extension){ 
-  		return true; 
-  		}
+      var fieldvalue = inp.files.item(a).name;
+      var fileSize = inp.files.item(a).size;
+      var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
+      if(thisext == extension){ 
+        if(fileSize<=maxSize){
+          return true; 
+         }else{ alert("server maximum upload size limit "+ max_size_upload+ "MB"); return false; }
+       }
       }
-      	alert("Please upload vaild .zip extension file.");
-      	return false;
+        alert("Please upload vaild .zip extension file.");
+        return false;
        }else{
      alert("Max. 20 uploads are supported at a time");
      return false;

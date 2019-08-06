@@ -83,7 +83,7 @@ add_action( 'admin_menu', 'dpwap_register_menupage' );
 
 // Add download link to plugins bulk action dropdown
 function add_download_bulk_actions( $bulk_array ) { 
-	$lastKey=end(array_keys($bulk_array));
+	$lastKey=@end(array_keys($bulk_array));
     if($lastKey=='delete-selected'){ 
     unset($bulk_array['delete-selected']);
   	$bulk_array['all_download'] = 'Download';
@@ -414,5 +414,6 @@ add_filter('upload_size_limit', 'dpwap_max_increase_upload');
 register_uninstall_hook( __FILE__, 'dpwap_func_uninstall' );
 function dpwap_func_uninstall() {
     delete_option( 'dpwap_popup_status' );
+    unlink(DPWAP_PLUGINS_TEMP);
 }
 
