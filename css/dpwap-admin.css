@@ -448,3 +448,83 @@
     text-align: center;
     margin-top: 15px;
 }
+
+
+/*  multiple uploader overlay css */
+.containerul {
+  position: fixed;
+  z-index: 4;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-top: -45px;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.8);
+  z-index: 999;
+  overflow: hidden;
+  display: none;
+}
+.containerul h1{
+  position: fixed;
+    top: 35%;
+    width: 102%;
+    z-index: 9999999999999;
+    color: white;
+    text-align: center;
+}
+.uploadLoader{
+    position: fixed;
+    z-index: 3;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -30px;
+    width: 130px;
+    height: 60px;
+ list-style: none;}@-webkit-keyframes 'loadbars' {
+    0%{
+        height: 10px;
+        margin-top: 25px;
+    }
+    50%{
+        height:50px;
+        margin-top: 0px;
+    }
+    100%{
+        height: 10px;
+        margin-top: 25px;
+    }
+}
+.uploadLoader li{
+        background-color: #ffffff
+;
+        width: 10px;
+        height: 10px;
+        float: right;
+        margin-right: 5px;
+   box-shadow: 0px 20px 10px rgba(0,0,0,0.2);
+    }
+.uploadLoader li:first-child{
+            -webkit-animation: loadbars 1s cubic-bezier(0.645,0.045,0.355,1) infinite 0s;
+        }
+.uploadLoader li:nth-child(2){
+            -webkit-animation: loadbars 1s ease-in-out infinite -0.2s;
+        }
+.uploadLoader li:nth-child(3){
+            -webkit-animation: loadbars 1s ease-in-out infinite -0.4s;
+ }
+.uploadLoader li:nth-child(4){
+            -webkit-animation: loadbars 1s ease-in-out infinite -0.6s;
+   }
+.uploadLoader li:nth-child(5){
+            -webkit-animation: loadbars 1s ease-in-out infinite -0.8s;
+   }
+.uploadLoader li:nth-child(6){
+            -webkit-animation: loadbars 1s ease-in-out infinite -1.0s;
+   }
+}

@@ -14,7 +14,7 @@ function check_valid_zipfile(dpwap_eleId,max_size_upload){
       var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
       if(thisext == extension){ 
         if(fileSize<=maxSize){
-			jQuery('.containerul').show();
+			  jQuery('.containerul').show();
           return true; 
         }
 		else
