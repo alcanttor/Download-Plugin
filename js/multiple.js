@@ -14,8 +14,14 @@ function check_valid_zipfile(dpwap_eleId,max_size_upload){
       var thisext = fieldvalue.substr(fieldvalue.lastIndexOf('.'));
       if(thisext == extension){ 
         if(fileSize<=maxSize){
+			jQuery('.containerul').show();
           return true; 
-         }else{ alert("server maximum upload size limit "+ max_size_upload+ "MB"); return false; }
+        }
+		else
+		{ 
+			alert("server maximum upload size limit "+ max_size_upload+ "MB"); 
+			return false; 
+		}
        }
       }
         alert("Please upload vaild .zip extension file.");
@@ -165,6 +171,7 @@ var getUpdate = jQuery(".update-nag").attr('class');
 
 if(jQuery("#activate_yes").length!=0){
      jQuery(".dpwap_allactive").show();
+	 jQuery('.containerul').hide();
 }
 
 if(jQuery("#form_alldpwap").length!=0){

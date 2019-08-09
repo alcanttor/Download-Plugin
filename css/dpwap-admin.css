@@ -206,7 +206,7 @@
   float: left;
   overflow: hidden;
   background: #fff;
-  min-height: 262px;
+  min-height: 270px;
 }
 #dpwap-plugin-box {
     width: 100%;
@@ -433,4 +433,18 @@
     letter-spacing: 3px;
     overflow: hidden;
     
+}
+
+#dpwap-plugin-box .upload-section-btn label {
+
+    margin-top: 0;
+    display: inline-block;
+    height: 18px;
+    margin-right: 12px;
+    line-height: 16px;
+
+}
+#dpwap-plugin-box .message {
+    text-align: center;
+    margin-top: 15px;
 }
