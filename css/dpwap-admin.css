@@ -294,12 +294,56 @@
   border-radius: 4px;
 }
 .modal-footer button {
-  background: #FF6501;
-  border: 1px solid #ccc;
-  padding: 6px 20px;
-  border-radius: 4px;
-  color: #fff;
+    font-weight: 500;
+    line-height: 26px;
+    height: 28px;
+    margin: 0 10px 0 0;
+    padding: 0 10px 1px;
+    cursor: pointer;
+    border: solid 1px #0087be;
+    border-style: solid;
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #FFF;
+    border-color: #0087be;
+    background: #00aadc;
+    vertical-align: top;
+    transition: .1s;
+    outline: 0px;
 }
+
+.modal-footer button:hover {
+    background-color: #0087be;
+    border-color: #0087be;
+}
+.dpwap_section_second ul li input[type=checkbox] {   
+    margin-top: 2px !important;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    border: 2px solid #6c7781;
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+.dpwap_section_second ul li input[type=checkbox]:checked {
+    background: #11a0d2;
+    border-color: #11a0d2;
+}
+
+.dpwap_section_second ul li input[type=checkbox]:checked:before {
+    content: "\f147";
+    color: #fff;
+    margin: -4px 0 0 -5px;
+}
+
+
+
 .package_activate p a.button{ display: none; }
 /*.modActive{ display: block; padding-top: 150px;  }*/
 
@@ -332,6 +376,7 @@
   background: #f7f7f7;
   box-shadow: 0 1px 0 #ccc;
   text-shadow: none !important;
+  margin-top: 7px;
 }
 
 #dpwap-plugin-box input[type=file] {
@@ -339,6 +384,7 @@
   width: auto;
   height: 34px;
   overflow: visible;
+  padding-top: 10px;
 }
 .upload-section-btn {
     position: relative;
@@ -368,9 +414,10 @@
     outline-width: 0;
 }
 #back_second{
-  float: left;
-  background: none;
-  color: #333;
+    float: left;
+    background-color: transparent;
+    border: 0px;
+    color: #0087be;
 
 }
 .footer_note{
@@ -396,7 +443,7 @@
     border: 1px solid #e5e5e5;
     padding: 30px;
     margin: 0 auto;
-    max-width: 460px;
+    max-width: 530px;
 }
 #dpwapLoader {
     position: fixed;
@@ -527,4 +574,75 @@
 .uploadLoader li:nth-child(6){
             -webkit-animation: loadbars 1s ease-in-out infinite -1.0s;
    }
+
+
+.dpwap-head {}
+
+.img_block.dpwap-head { 
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 30px;
 }
+
+.img_block.dpwap-head .dpwap-head-left { 
+    float: left;
+}
+
+.img_block.dpwap-head .dpwap-head-right {
+    float: right;
+    padding: 20px;
+}
+
+.img_block.dpwap-head .dpwap-head-right img {    
+    width: auto;
+    height: 200px;
+}
+
+.dpwap-head-title {
+    font-size: 25px;
+    padding: 44px 20px 20px 20px;  
+    color: #0087be;
+}
+
+.dpwap-head-left span.dpwap-version-info {
+    background-color: #D8ECF9;
+    padding: 8px 20px;
+    font-weight: 500;  
+    font-size: 15px;
+}
+
+.dpwap-head-left span.dpwap-version-info span {
+    font-weight: 700;
+}
+
+.modal-body .col-dpwap-4 img { 
+    width: 100%;
+    max-width: 175px;
+}
+
+.plugins .plugin-title .dpwap-download-info{   
+    width: 30px !important;
+    height: 20px !important;
+    float: none !important;
+    cursor: pointer;
+}
+
+
+.plugins .plugin-title .dpwap-download-info.dashicons:before{  
+    background-color: transparent;
+    box-shadow: none;
+    color: #0073aa;
+    font-size: 20px;
+}
+
+.dpwap-upload-plugin.dpwap-upload-plugin {  
+    margin-top: -5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.dpwap-upload-plugin.dpwap-upload-plugin:before{   
+    color: #0073aa;
+}
+ 

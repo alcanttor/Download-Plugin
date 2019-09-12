@@ -12,35 +12,47 @@
 			<div class="dpwap_section_first" id="dpwap_section_first">
 			 <div class="modal-head">
 				<button class="close" type="button" data-dismiss="modal">×</button>
-				<div class="img_block"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap_header.jpg'; ?>">
-					<h4 class="modal-title">New Features Added</h4>
+				<div class="img_block dpwap-head">
+                                    <div class="dpwap-head-left">
+                                        <div class="dpwap-head-title">Download Plugin  </div>
+                                        <span class="dpwap-version-info"><span>NEW</span> V1.5</span>
+                                    </div >
+                                    <div class="dpwap-head-right">
+                                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-head-img.png'; ?>">
+                                    </div>
+                                    
+                                    
+                                    
+					
 				</div>
+                                
+                                <h4 class="modal-title">What’s New!</h4>
 			 </div>
 			 <div class="modal-body">
 				<!-- body start -->
 			     <div class="row">
 		            <!-- left column -->
-		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-left-img.jpg'; ?>"></div>
+		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-feature1-img.png'; ?>"></div>
 		            <!-- right column -->
 		            <div class="col-dpwap-8">
-                     <h4>What is Lorem Ipsum?</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
+                     <h4>Download multiple plugins simultaneously </h4>
+                     <p>Download plugin is now integrated better than ever with WordPress Installed Plugins page! We have added a new option in Bulk Actions dropdown, called Download. It means, you can now check more than one plugin and bulk download them simultaneously. 
                      </p>
 		            </div>
 		          </div>
 		          <div class="row">
 		            <!-- left column -->
-		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-left-img.jpg'; ?>"></div>
+		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-feature2-img.png'; ?>"></div>
 		            <!-- right column -->
 		            <div class="col-dpwap-8">
-		             <h4>What is Lorem Ipsum?</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
+		             <h4>Upload, install and active multiple plugins </h4>
+                     <p>Since we have added functionality to download multiple plugins, it only made sense to allow you to install multiple plugins simultaneously too. So now when you go to Add New page in WordPress Plugins menu, you will see a new button called Install Multiple Plugins! Using this, you can multi-select more than one plugin zip from your computer and upload them with a single click! You will also have option to activate them selectively or all together. 
                      </p>
                  </div>
 		          </div>
 		           <div class="modal-footer">
 		           	<span class="footer_note">If you wish to know more about how to use these new feature, please <a href="https://metagauss.com/download-plugin-guide/" target="blank">read our guide.</a></span>
-			       <button class="btn btn-default" id="next_first" type="button">Add Even More Features!</button>
+			       <button class="btn btn-default" id="next_first" type="button">Want More Features?</button>
 				</div>
                 </div>
                 </div>
@@ -110,7 +122,7 @@
 				<input type="hidden" name="featureSubmit" value="yes">	
                 <div id="dpwap_third_inner"></div>
 		        <div class="modal-footer">
-		        <button class="btn btn-default" id="back_second" type="button">Back</button>	
+		        <button class="btn btn-default" id="back_second" type="button">&larr; &nbsp;Back</button>	
 			    <button class="btn btn-default" id="feature_activate" onclick="activateFeaturePLugins();" type="button">Install and Activate</button>
 				</div>
 				</form>	

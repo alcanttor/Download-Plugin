@@ -227,3 +227,11 @@ var prev_count = 0;
             }
     });
 }
+
+
+//Popup 
+jQuery(document).ready(function(){
+  jQuery(".dpwap-download-info").click(function(){
+    jQuery("#dpwap_modal").modal();
+});
+});

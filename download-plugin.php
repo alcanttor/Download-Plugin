@@ -183,17 +183,38 @@ function dpwap_plugin_multiple_download_func() {
 add_action( 'wp_ajax_dpwap_plugin_download_url', 'dpwap_plugin_multiple_download_func');
 
 //admin multiple download function
-function dpwap_setting_popup_func() {
+//function dpwap_setting_popup_func() {
 	
-    global $pagenow;
-    if ( $pagenow == 'plugins.php') {
+    //global $pagenow;
+    //if ( $pagenow == 'plugins.php') {
 //      if(!get_option('dpwap_popup_status')){	
 //      require_once 'dpwap_setting.php'; 
 //      add_option('dpwap_popup_status',1);	 
 //      }
-      require_once 'dpwap_setting.php'; 
+      //require_once 'dpwap_setting.php'; 
+  //}
+//}
+
+function dpwap_setting_popup_func() {
+   
+    global $pagenow;
+    if ( $pagenow == 'plugins.php') {
+      if(!get_option('dpwap_popup_status')){   
+           require_once 'dpwap_setting.php';
+           add_option('dpwap_popup_status',1);    
+      }
+     require_once 'dpwap_setting.php';
   }
 }
+
+function dpwap_upload_popup_func() {
+   
+    global $pagenow;
+    if ( $pagenow == 'plugin-install.php') {
+     require_once 'dpwap_setting.php';
+  }
+}
+
 add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 
 
@@ -211,7 +232,7 @@ function dpwap_multiple_upload_admin_func(){
     if ( $pagenow == 'plugin-install.php' ) {  
      	$redirect=admin_url('admin.php?page=mul_upload');
     	 echo '<div class="wrap" id="btn_upload">
-              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
+              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a><span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-info"></span>
           </div>';
          }
      }
@@ -277,7 +298,7 @@ function dpwap_download_link( $links, $plugin_file ){
 	}
 	
 	$download_link = array(
-						'<a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a>',
+						'<a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-info"></span>',
 	);
 	
 	return array_merge( $links, $download_link );
