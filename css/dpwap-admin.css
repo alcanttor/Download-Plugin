@@ -281,6 +281,11 @@
 
   /* line-height: 0; */
 }
+
+.modal-head .close:hover{
+    color:#0087be
+}
+
 .modal-header {
   background: #eee;
 }
