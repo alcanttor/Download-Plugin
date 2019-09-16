@@ -1,9 +1,3 @@
-
-<script language="javascript">
-  jQuery(window).load(function() {
-     jQuery('#dpwap_modal').modal();
-   });
-</script>
 <!-- Modal -->
 <div id="dpwap_modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">

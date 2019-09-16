@@ -199,7 +199,14 @@ function dpwap_setting_popup_func() {
    
     global $pagenow;
     if ( $pagenow == 'plugins.php') {
-      if(!get_option('dpwap_popup_status')){   
+      if(!get_option('dpwap_popup_status')){  
+        ?>
+            <script language="javascript">
+               jQuery(window).load(function() {
+                  jQuery('#dpwap_modal').modal();
+                });
+             </script>
+        <?php
            require_once 'dpwap_setting.php';
            add_option('dpwap_popup_status',1);    
       }
@@ -229,7 +236,8 @@ add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
 //admin multiple upload form
 function dpwap_multiple_upload_admin_func(){
     global $pagenow;
-    if ( $pagenow == 'plugin-install.php' ) {  
+    if ( $pagenow == 'plugin-install.php' ) {
+        require_once 'dpwap_setting.php';
      	$redirect=admin_url('admin.php?page=mul_upload');
     	 echo '<div class="wrap" id="btn_upload">
               <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a><span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-info"></span>
