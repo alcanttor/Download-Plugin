@@ -39,7 +39,7 @@
 		            <div class="col-dpwap-4"><img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-feature2-img.png'; ?>"></div>
 		            <!-- right column -->
 		            <div class="col-dpwap-8">
-		             <h4>Upload, install and active multiple plugins </h4>
+		             <h4>Upload, install and activate multiple plugins </h4>
                      <p>Since we have added functionality to download multiple plugins, it only made sense to allow you to install multiple plugins simultaneously too. So now when you go to Add New page in WordPress Plugins menu, you will see a new button called Install Multiple Plugins! Using this, you can multi-select more than one plugin zip from your computer and upload them with a single click! You will also have option to activate them selectively or all together. 
                      </p>
                  </div>

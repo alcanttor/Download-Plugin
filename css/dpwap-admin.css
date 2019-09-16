@@ -283,7 +283,8 @@
 }
 
 .modal-head .close:hover{
-    color:#0087be
+    color:#a00;
+    cursor: pointer;
 }
 
 .modal-header {
