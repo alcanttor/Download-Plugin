@@ -3,7 +3,7 @@
 Plugin Name: Download Plugin
 Plugin URI: http://metagauss.com
 Description: Download any plugin from your wordpress admin panel's plugins page by just one click!
-Version: 1.1.0
+Version: 1.5.0
 Author: metagauss
 Author URI: https://profiles.wordpress.org/metagauss/
 Text Domain: download-plugin
