@@ -213,7 +213,9 @@
     text-align: center;
     margin: 30px auto;
 }
-.postbox {
+
+#dpwap-plugin-box .postbox,
+.dpwap-box-wrap .postbox{  
   position: relative;
   min-width: auto;
   border: 0 transparent !important;
@@ -221,6 +223,11 @@
   background: #f1f1f1;
   overflow: hidden;
   width: 100%;
+}
+
+#dpwap-plugin-box .postbox .inside,
+.dpwap-box-wrap .postbox .inside{  
+  padding:0 !important; 
 }
 .postbox .hndle, .stuffbox .hndle{
   
@@ -242,9 +249,7 @@
   overflow: hidden;
   clear: both;
 }
-.postbox .inside{
-  padding:0 !important;
-}
+
 .toplevel_page_activate-status #wpfooter{
     left: 0;
     right: 0;
