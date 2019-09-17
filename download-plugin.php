@@ -306,7 +306,7 @@ function dpwap_download_link( $links, $plugin_file ){
 	}
 	
 	$download_link = array(
-						'<a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span>',
+						'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span></span>',
 	);
 	
 	return array_merge( $links, $download_link );
