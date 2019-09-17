@@ -240,8 +240,7 @@
     float: left;
     overflow: hidden;
     background: #fff;
-    min-height: 270px;
-    max-height: 400px;
+    min-height: 320px;
 }
 
 #dpwap-plugin-box {
