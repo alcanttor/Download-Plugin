@@ -131,7 +131,7 @@ class dpwapuploader
 			$file_extension = end($tmp);
 			
             if ($file_extension == 'zip'){
-               $this->dpwap_plugin_handle_download($temp,$val,$dpwap_action,$whform,$dpid);
+               $this->dpwap_plugin_handle_download("temp",$val,$dpwap_action,$whform,$dpid);
             }
             else {
                 $plugins[plugin_basename($val . ".php")] = $this->dpwap_get_plugin($val);

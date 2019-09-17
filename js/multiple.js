@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
        jQuery("#dpwap_section_first").hide();
        jQuery('#dpwap_section_second').hide();
        jQuery("#dpwap_section_third").show();
-
+       jQuery('#feature_activate').attr('disabled','disabled');
             var wpdapFeature = [];
             jQuery.each(jQuery("input[name='feature']:checked"), function(){            
             wpdapFeature.push(jQuery(this).val());
@@ -91,7 +91,8 @@ jQuery(document).ready(function() {
             success : function( response ) {
                  jQuery('#thirdLoading').hide();
                 jQuery('#title_third').text('You are all set! Install and activate our following plugins from wordpress.org to add selected features.');
-                jQuery("#dpwap_third_inner").html(response); 
+                jQuery("#dpwap_third_inner").html(response);
+                 jQuery('#feature_activate').removeAttr('disabled');
             }
         });
         }else { alert("Select at least one Feature "); return false; }   
