@@ -240,7 +240,7 @@ function dpwap_multiple_upload_admin_func(){
         require_once 'dpwap_setting.php';
      	$redirect=admin_url('admin.php?page=mul_upload');
     	 echo '<div class="wrap" id="btn_upload">
-              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a><span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-info"></span>
+              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a><span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-editor-help"></span>
           </div>';
          }
      }
@@ -306,7 +306,7 @@ function dpwap_download_link( $links, $plugin_file ){
 	}
 	
 	$download_link = array(
-						'<a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-info"></span>',
+						'<a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span>',
 	);
 	
 	return array_merge( $links, $download_link );
