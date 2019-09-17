@@ -141,9 +141,9 @@ class dpwapuploader
         
         //$plugins = mpi_get_plugins();
         
-        if ($send) 
+        if(isset($send)) 
         {
-			$to_send = new stdClass();
+            $to_send = new stdClass();
             $to_send->plugins = $plugins;
             $send = serialize($to_send);
             $request = 'plugins=' . urlencode($send);
