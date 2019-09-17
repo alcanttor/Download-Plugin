@@ -240,7 +240,7 @@
     float: left;
     overflow: hidden;
     background: #fff;
-    min-height: 270px;
+    min-height: 320px;
 }
 
 #dpwap-plugin-box {
@@ -716,3 +716,12 @@ height: 30px;*/
 .dpwap-upload-plugin.dpwap-upload-plugin:before {
     color: #0073aa;
 }
+
+.plugins .plugin-title .dpwap-download-info{   
+    display:none;
+}
+
+.plugins .plugin-title .dpwap_download-wrap:hover span.dpwap-download-info  { 
+    display: inline-block
+}
+
