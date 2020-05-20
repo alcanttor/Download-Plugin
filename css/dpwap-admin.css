@@ -394,6 +394,8 @@ height: 30px;*/
     content: "\f147";
     color: #fff;
     margin: -4px 0 0 -5px;
+    font: normal 21px/1 dashicons;
+
 }
 
 .package_activate p a.button {
@@ -690,8 +692,10 @@ height: 30px;*/
 
 .modal-body .col-dpwap-4 img {
     width: 100%;
-    max-width: 175px;
+    max-width: 128px;
 }
+
+.modal-body #dpwap_third_inner .col-dpwap-4 img {max-width: 128px;}
 
 .plugins .plugin-title .dpwap-download-info {
     width: 30px !important;
