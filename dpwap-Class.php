@@ -14,6 +14,22 @@ class dpwapuploader
 	{   
         global $wp_version;
       
+        if(!isset($type))
+        {
+            $type='';
+        }
+        if(!isset($title))
+        {
+            $title ='';
+        }
+        if(!isset($url))
+        {
+            $url='';
+        }
+        if(!isset($nonce))
+        {
+            $nonce='';
+        }
         if(version_compare($wp_version, '3.0', '<')){
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';  
             $upgrader = new Plugin_Upgrader();
