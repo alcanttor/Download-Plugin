@@ -308,7 +308,7 @@ class dpwapuploader
 				}
 			}
 			else{
-			_e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
+			//_e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
 			}
 		}
 		if($dpwap_tempurls)
