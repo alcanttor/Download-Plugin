@@ -99,7 +99,7 @@ add_filter( 'bulk_actions-plugins', 'add_download_bulk_actions');
 //admin multiple download function
 function dpwap_admin_multiple_download_func() {
     global $pagenow;
-    if ( $pagenow == 'plugins.php' && $_GET['action']=='multiple_download') {
+    if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action']=='multiple_download') {
     	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
     	  foreach($dpwap_plugins as $pluginUrl){
     	   $downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
