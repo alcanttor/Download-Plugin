@@ -306,7 +306,7 @@ class dpwapuploader
 		check_admin_referer($this->key);
         _e('<div class="dpwap_h3">Installing Plugins:</div>','dpwap');
 		for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
-			 //echo "<h4>".$dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i]."</h4>";
+			$dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i];
 
 			if (strpos($dpwap_locFilenm,'mpipluginsbackup') === false){								
 				//Get the temp file path
@@ -324,7 +324,7 @@ class dpwapuploader
 				}
 			}
 			else{
-			//_e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
+			_e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
 			}
 		}
 		if($dpwap_tempurls)
