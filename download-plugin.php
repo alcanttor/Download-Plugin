@@ -52,7 +52,7 @@ load_plugin_textdomain( 'download-plugin', false, dirname( plugin_basename( __FI
  */
 function dpwap_admin_scripts( $hook ){
 	wp_enqueue_script( 'up_admin_script', DPWAP_URL.'js/bootstrap.min.js', array('jquery'));
-	wp_enqueue_script( 'up_admin_func', DPWAP_URL.'js/multiple.js');
+	wp_enqueue_script( 'up_admin_func', DPWAP_URL.'js/multiple.js',array(),'6.1');
 	wp_register_style( 'dpwap-admin-style', DPWAP_URL.'/css/dpwap-admin.css' );
 	wp_enqueue_style( 'dpwap-admin-style' );
 }

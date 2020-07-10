@@ -180,7 +180,7 @@ if(jQuery("#form_alldpwap").length!=0){
 }
 
 
-jQuery('#btn_upload').nextUntil('.plugin-install-tab-featured').remove('div');
+/* jQuery('#btn_upload').nextUntil('.plugin-install-tab-featured').remove('div');*/
 
 });
 
