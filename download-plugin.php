@@ -101,18 +101,21 @@ function dpwap_admin_multiple_download_func() {
     global $pagenow;
     if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action']=='multiple_download') {
     	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
-    	  foreach($dpwap_plugins as $pluginUrl){
-    	   $downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
-     	   ?>
-     	    <script language="javascript" type="text/javascript">
-     	    	//window.open("<?php echo $downUrl; ?>");
-     	        var iframe = document.createElement('iframe');
-			     iframe.src = "<?php echo $downUrl; ?>";
-			     iframe.style.display = 'none';
-			    document.body.appendChild(iframe);
-	         </script>
-	       <?php  
-           }
+          if(!empty($dpwap_plugins))
+          {
+            foreach($dpwap_plugins as $pluginUrl){
+             $downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
+             ?>
+              <script language="javascript" type="text/javascript">
+                  //window.open("<?php echo $downUrl; ?>");
+                  var iframe = document.createElement('iframe');
+                               iframe.src = "<?php echo $downUrl; ?>";
+                               iframe.style.display = 'none';
+                              document.body.appendChild(iframe);
+                   </script>
+                 <?php  
+             }
+          }
     	delete_option("dpwap_downloads_url");
   }
 }
