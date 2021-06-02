@@ -5,7 +5,7 @@
 		<!-- sk section first page start -->
 			<div class="dpwap_section_first" id="dpwap_section_first">
 			 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">×</button>
+				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
                                     <div class="dpwap-head-left">
                                         <div class="dpwap-head-title">Download Plugin  </div>
@@ -54,7 +54,7 @@
              <!-- sk section second page start -->
 				   <div class="dpwap_section_second" id="dpwap_section_second" style="display: none;">
 				   	 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">×</button>
+				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 					<h4 class="modal-title">Select the features you wish to add:</h4>
 				</div>
 			 <div class="modal-body">
@@ -105,7 +105,7 @@
 			<!-- sk section third page start -->
 				<div class="dpwap_section_third" id="dpwap_section_third" style="display: none;">
 					 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">×</button>
+				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 				    <span id="thirdLoading"></span>
 					<h4 id="title_third" class="modal-title"></h4>
 				</div>
