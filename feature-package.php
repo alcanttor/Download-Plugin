@@ -3,16 +3,16 @@ $featureObj = new dpwapuploader();
 	if(isset($_POST['featureSubmit']) && $_POST['featureSubmit']=='yes'){
 	// $_POST['download_theme'];
 	 $plugins = array();
-	 if($_POST['download_theme']==1){
+	 if(isset($_POST['download_theme']) && $_POST['download_theme']==1){
 	 	$plugins[]='https://downloads.wordpress.org/plugin/download-theme.zip';
 	 }
-	 if($_POST['registration_magic']==1){
+	 if(isset($_POST['registration_magic']) && $_POST['registration_magic']==1){
 	   $plugins[] = 'https://downloads.wordpress.org/plugin/custom-registration-form-builder-with-submission-manager.zip';
 	 }
-	 if($_POST['profile_grid']==1){
+	 if(isset($_POST['profile_grid']) && $_POST['profile_grid']==1){
 	    $plugins[] = 'https://downloads.wordpress.org/plugin/profilegrid-user-profiles-groups-and-communities.zip';
 	 }
-	 if($_POST['event_prime']==1){
+	 if(isset($_POST['event_prime']) && $_POST['event_prime']==1){
 	    $plugins[] = 'https://downloads.wordpress.org/plugin/eventprime-event-calendar-management.zip';
 	 }
      
