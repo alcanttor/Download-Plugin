@@ -242,12 +242,12 @@ function dpwap_multiple_upload_admin_func(){
     if ( $pagenow == 'plugin-install.php' ) {
         require_once 'dpwap_setting.php';
      	$redirect=admin_url('admin.php?page=mul_upload');
-    	 echo '<div class="wrap" id="btn_upload">
-              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a><span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-editor-help"></span>
-          </div>';
-         }
-     }
- add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
+    	echo '<div class="wrap" id="btn_upload">
+              <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>';/*<span class="dpwap-download-info dpwap-upload-plugin dashicons dashicons-editor-help"></span>*/
+      	echo '</div>';
+ 	}
+}
+add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
