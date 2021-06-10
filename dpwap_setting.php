@@ -7,20 +7,15 @@
 			 <div class="modal-head">
 				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
-                                    <div class="dpwap-head-left">
-                                        <div class="dpwap-head-title">Download Plugin  </div>
-                                        <span class="dpwap-version-info"><span>NEW</span> V1.5</span>
-                                    </div >
-                                    <div class="dpwap-head-right">
-                                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-head-img.png'; ?>">
-                                    </div>
-                                    
-                                    
-                                    
-					
+                    <div class="dpwap-head-left">
+                        <div class="dpwap-head-title">Download Plugin  </div>
+                        <span class="dpwap-version-info"><span>NEW</span> V1.5</span>
+                    </div >
+                    <div class="dpwap-head-right">
+                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/dpwap-head-img.png'; ?>">
+                    </div>
 				</div>
-                                
-                                <h4 class="modal-title">What’s New!</h4>
+                <h4 class="modal-title">What’s New!</h4>
 			 </div>
 			 <div class="modal-body">
 				<!-- body start -->

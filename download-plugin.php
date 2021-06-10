@@ -205,10 +205,10 @@ function dpwap_setting_popup_func() {
       if(!get_option('dpwap_popup_status')){  
         ?>
             <script language="javascript">
-               jQuery(window).load(function() {
-                  jQuery('#dpwap_modal').modal();
-                });
-             </script>
+               	/*jQuery(window).load(function() {
+                  	jQuery('#dpwap_modal').modal();
+                });*/
+         	</script>
         <?php
            require_once 'dpwap_setting.php';
            add_option('dpwap_popup_status',1);    
