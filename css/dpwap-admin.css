@@ -141,10 +141,7 @@
 }
 
 .modal-footer {
-    margin-top: 5px;
-    padding: 10px 20px 10px;
-    text-align: right;
-    border-top: 1px solid #e5e5e5;
+  text-align: right;
 }
 
 .modal-footer .btn + .btn {
@@ -736,18 +733,26 @@
 
 
 .dpwap-section-head {
-    font-size: 26px;
-    margin: 10px 5px;
-    width: 100%;
+    font-size: 22px;
     color: #000;
-    line-height: 36px;
+
 }
 
-.dpwap-section-content {
-    font-size: 16px;
-    line-height: 22px;
-    margin: 2px 5px;
+.dpwap-section-col {
+  -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
 }
+
+.dpwap-section-col{    
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.dpwap-section-col a {color: #2e96ff}
 
 .dpwap_new_feature-content {
     font-size: 16px;
