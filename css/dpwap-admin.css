@@ -776,12 +776,14 @@
     position: absolute;
     left: -65px;
     text-decoration: none;
+    cursor: pointer
     
 }
 .dpwap-arrow-wrap .dpwap-arrow-btn.dpwap-next-tab {
      position: absolute;
     right: -22px;
     text-decoration: none;
+    cursor: pointer
 
 }
 
