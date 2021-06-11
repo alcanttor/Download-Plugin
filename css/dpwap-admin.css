@@ -306,13 +306,13 @@
 
 .modal-head .close {
     position: absolute;
-    right: 5px;
+    right: 0px;
     z-index: 999;
     background: transparent;
     border: navajowhite;
-    font-size: 21px;
-    top: -29px;
-    color: #ffffff;
+    font-size: 24px;
+    top: -33px;
+    color: #ffffff; 
 }
 
 .modal-head .close:hover {
@@ -767,7 +767,7 @@
 
 .dpwap-head-fourth-slide img{   
     width: auto;
-    height: 320px;
+    height: 328px;
 }
 
 .dpwap-arrow-wrap {
