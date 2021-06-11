@@ -141,10 +141,8 @@
 }
 
 .modal-footer {
-    margin-top: 5px;
-    padding: 10px 20px 10px;
-    text-align: right;
-    border-top: 1px solid #e5e5e5;
+  text-align: right;
+  margin-top: 20px;
 }
 
 .modal-footer .btn + .btn {
@@ -309,13 +307,13 @@
 
 .modal-head .close {
     position: absolute;
-    right: 5px;
+    right: 0px;
     z-index: 999;
     background: transparent;
     border: navajowhite;
-    font-size: 21px;
-    top: -29px;
-    color: #ffffff;
+    font-size: 24px;
+    top: -33px;
+    color: #ffffff; 
 }
 
 .modal-head .close:hover {
@@ -340,9 +338,8 @@
 .modal-footer button {
     font-weight: 500;
     line-height: 26px;
-    height: 44px;
     margin: 0 10px 0 0;
-    padding: 0 20px 1px;
+    padding: 6px 24px;
     cursor: pointer;
     -webkit-appearance: none;
     -webkit-border-radius: 3px;
@@ -736,23 +733,41 @@
 
 
 .dpwap-section-head {
-    font-size: 26px;
-    margin: 10px 5px;
-    width: 100%;
+    font-size: 22px;
     color: #000;
-    line-height: 36px;
+
 }
 
-.dpwap-section-content {
-    font-size: 16px;
-    line-height: 22px;
-    margin: 2px 5px;
+.dpwap-section-col {
+  -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
 }
+
+.dpwap-section-col{    
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.dpwap-section-col a {color: #2e96ff}
 
 .dpwap_new_feature-content {
     font-size: 16px;
     margin: 22px 10px;
     line-height: 24px;
+}
+
+.dpwap-head-fourth-slide {
+    width: 100%;
+    text-align: center;
+}
+
+.dpwap-head-fourth-slide img{   
+    width: auto;
+    height: 328px;
 }
 
 .dpwap-arrow-wrap {

@@ -28,12 +28,12 @@
                              
 				<!-- body start -->
 			     <div class="row">
-                                 <div class="dpwap-section-head">
+                                 <div class="dpwap-section-head dpwap-section-col">
                                      Thank you for installing Download Plugin!
                                  </div>
 		          </div>
 		          <div class="row">
-                                <div class="dpwap-section-content">
+                                <div class="dpwap-section-col">
                                It is now awfully easy to download any plugin from your website dashboard with a single click! 
                                  </div>
 		
@@ -56,7 +56,7 @@
                         <span class="dpwap-version-info"><span>NEW</span> V1.5</span>-->
                     </div >
                     <div class="dpwap-head-right">
-                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/head-bg.png'; ?>">
+                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/slide-2.png'; ?>">
                     </div>
 				</div>
 
@@ -64,12 +64,12 @@
 			 <div class="modal-body">
 				<!-- body start -->
                                 <div class="row">
-                                    <div class="dpwap-section-head">
+                                    <div class="dpwap-section-head dpwap-section-col">
                                         Download multiple plugins together!
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="dpwap-section-content">
+                                    <div class="dpwap-section-col">
                                         Check multiple plugins and select Download option in Bulk Actions dropdown.
                                     </div>
 
@@ -90,7 +90,7 @@
 				<div class="img_block dpwap-head">
 
                     <div class="dpwap-head-right">
-                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/head-bg.png'; ?>">
+                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/slide-3.png'; ?>">
                     </div>
 				</div>
                 
@@ -98,12 +98,12 @@
 			 <div class="modal-body">
 				<!-- body start -->
                                 <div class="row">
-                                    <div class="dpwap-section-head">
+                                    <div class="dpwap-section-head dpwap-section-col">
                                       Upload and install multiple plugins!
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="dpwap-section-content">
+                                    <div class="dpwap-section-col">
                                  Use the new button named Install Multiple Plugins, on Add New Plugin page.  You can multi-select more than one plugin zip from your computer and start the installation process.                                     </div>
 
                                 </div>
@@ -121,8 +121,8 @@
 				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
 
-                    <div class="dpwap-head-right">
-                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/head-bg.png'; ?>">
+                    <div class="dpwap-head-fourth-slide">
+                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/slide-4.png'; ?>">
                     </div>
 				</div>
                 
@@ -131,7 +131,7 @@
 				<!-- body start -->
 
 		          <div class="row">
-                        <div class="dpwap_new_feature-content">If you wish to know more about how to use these new feature, please <a href="https://metagauss.com/download-plugin-guide/" target="blank">read our guide.</a></div>
+                        <div class="dpwap-section-col">If you wish to know more about how to use these new feature, please <a href="https://metagauss.com/download-plugin-guide/" target="blank">read our guide.</a></div>
 		          </div>
 		           <div class="modal-footer">
 			       <button class="btn btn-default prev-tab" id="last-slide-button"  type="button">Prev</button>
