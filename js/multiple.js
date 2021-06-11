@@ -59,6 +59,70 @@ jQuery(document).ready(function() {
         }); 
          return false;
     });
+    
+    
+    
+    jQuery('#second-slide-button').click(function() {
+       jQuery('#dpwap_section_first-slide').hide();
+       jQuery("#dpwap_section_second-slide").show();
+   });
+   
+   
+    jQuery('#third-slide-button').click(function() {
+       jQuery('#dpwap_section_first-slide').hide();
+       jQuery("#dpwap_section_second-slide").hide();
+       jQuery("#dpwap_section_third-slide").show();
+   });
+   
+
+jQuery(document).ready(function() {
+  var length = jQuery('.dpwap_section_content').length; 
+
+  jQuery('.map-marker').click(function() {
+    var index = jQuery(this).index(); 
+
+    jQuery('.map-marker,.dpwap_section_content').removeClass('current');
+    jQuery('.dpwap_section_content:eq(' + index + ')').addClass('current');
+    jQuery(this).addClass('current');
+ 
+    if (index == 0) {
+      jQuery('.prev-tab').hide();
+      jQuery('.next-tab').show();
+    } else if (index == (length - 1)) {
+      jQuery('.prev-tab').show();
+      jQuery('.next-tab').hide();
+    } else {
+      jQuery('.prev-tab,.next-tab').show();
+    }
+  });
+
+  jQuery('.next-tab').click(function() {
+    var currentIndex = jQuery('.dpwap_section_content.current').index(); 
+    var nextIndex = currentIndex + 1; // add 1
+
+    jQuery('.map-marker, .dpwap_section_content').removeClass('current');
+    jQuery('.dpwap_section_content:eq(' + nextIndex + '),.map-marker:eq(' + nextIndex + ')').addClass('current');
+
+    if (nextIndex == (length - 1)) {
+      jQuery(this).hide();
+
+    }
+  });
+
+  jQuery('.prev-tab').click(function() {
+    var currentIndex = jQuery('.dpwap_section_content.current').index(); 
+    var prev = currentIndex - 1; 
+    jQuery('.map-marker, .dpwap_section_content').removeClass('current');
+    jQuery('.dpwap_section_content:eq(' + prev + '),.map-marker:eq(' + prev + ')').addClass('current');
+    if (prev == 0) {
+      jQuery(this).hide();
+
+    }
+  });
+});
+
+    
+    
 
   //feature poup second section activated function
    jQuery('#next_first').click(function() {
