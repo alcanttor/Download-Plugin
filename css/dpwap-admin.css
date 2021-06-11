@@ -760,6 +760,16 @@
     line-height: 24px;
 }
 
+.dpwap-head-fourth-slide {
+    width: 100%;
+    text-align: center;
+}
+
+.dpwap-head-fourth-slide img{   
+    width: auto;
+    height: 320px;
+}
+
 .dpwap-arrow-wrap {
     position: absolute;
     top: 38%;

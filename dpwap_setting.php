@@ -121,8 +121,8 @@
 				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
 
-                    <div class="dpwap-head-right">
-                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/head-bg.png'; ?>">
+                    <div class="dpwap-head-fourth-slide">
+                        <img src="<?php echo plugin_dir_url( __FILE__ ) . 'images/slide-4.png'; ?>">
                     </div>
 				</div>
                 
