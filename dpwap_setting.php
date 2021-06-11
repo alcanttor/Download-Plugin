@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="dpwap-section-col">
-                                 Use the new button named Install Multiple Plugins, on Add New Plugin page.  You can multi-select more than one plugin zip from your computer and start the installation process.                                     </div>
+                                        Use the new button named <strong> Install Multiple Plugins</strong>, on Add New Plugin page.  You can multi-select more than one plugin zip from your computer and start the installation process.                                     </div>
 
                                 </div>
 		           <div class="modal-footer">
