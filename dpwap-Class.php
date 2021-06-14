@@ -303,32 +303,37 @@ class dpwapuploader
 	
 		
 	function dpwap_plugin_locInstall(){
-		check_admin_referer($this->key);
-        _e('<div class="dpwap_h3">Installing Plugins:</div>','dpwap');
-		for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
-			$dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i];
+            // Increase the resources
+            @ini_set('memory_limit', '1024M');
+            @ini_set('upload_max_filesize', '640M');
+            @ini_set('post_max_size', '640M');
 
-			if (strpos($dpwap_locFilenm,'mpipluginsbackup') === false){								
-				//Get the temp file path
-				$tmpFilePath = $_FILES['dpwap_locFiles']['tmp_name'][$i];
+            check_admin_referer($this->key);
+            _e('<div class="dpwap_h3">Installing Plugins:</div>','dpwap');
+            for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
+                $dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i];
 
-				//Make sure we have a filepath
-				if ($tmpFilePath != ""){
-					//Setup our new file path
-					$newFilePath = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/' . $_FILES['dpwap_locFiles']['name'][$i];
-					
-					//Upload the file into the temp dir
-					if(@move_uploaded_file($tmpFilePath, $newFilePath)) {
-						$dpwap_tempurls[] = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/'.$_FILES['dpwap_locFiles']['name'][$i];
-					}
-				}
-			}
-			else{
-			_e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
-			}
-		}
-		if($dpwap_tempurls)
-		$this->dpwap_get_packages($dpwap_tempurls,"activate","nocreate","upload_locFiles");
+                if (strpos($dpwap_locFilenm,'mpipluginsbackup') === false){								
+                    //Get the temp file path
+                    $tmpFilePath = $_FILES['dpwap_locFiles']['tmp_name'][$i];
+
+                    //Make sure we have a filepath
+                    if ($tmpFilePath != ""){
+                        //Setup our new file path
+                        $newFilePath = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/' . $_FILES['dpwap_locFiles']['name'][$i];
+
+                        //Upload the file into the temp dir
+                        if(@move_uploaded_file($tmpFilePath, $newFilePath)) {
+                                $dpwap_tempurls[] = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/'.$_FILES['dpwap_locFiles']['name'][$i];
+                        }
+                    }
+                }
+                else{
+                    _e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
+                }
+            }
+            if($dpwap_tempurls)
+            $this->dpwap_get_packages($dpwap_tempurls,"activate","nocreate","upload_locFiles");
 	}
 
 

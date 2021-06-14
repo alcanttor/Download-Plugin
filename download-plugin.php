@@ -438,13 +438,13 @@ function dpwap_download(){
 add_action( 'admin_init', 'dpwap_download' );
 
 // sk_upload_max_increase_upload
- function dpwap_max_increase_upload()
-    {
-        $max_size = 640 * 1024 * 1024;
-        return $max_size;
-    } // upload_max_increase_upload
+/*function dpwap_max_increase_upload()
+{
+    $max_size = 640 * 1024 * 1024;
+    return $max_size;
+} // upload_max_increase_upload
 
-add_filter('upload_size_limit', 'dpwap_max_increase_upload');
+add_filter('upload_size_limit', 'dpwap_max_increase_upload');*/
 
 // plugin uninstallation
 register_uninstall_hook( __FILE__, 'dpwap_func_uninstall' );
