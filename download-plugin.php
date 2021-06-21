@@ -20,7 +20,7 @@ require_once 'dpwap-Class.php';
 
 $dpwap_uploadDir = wp_upload_dir();
 if( !defined( 'DPWAPUPLOADDIR_PATH' ) ) {
-define('DPWAPUPLOADDIR_PATH', $dpwap_uploadDir['basedir']);
+	define('DPWAPUPLOADDIR_PATH', $dpwap_uploadDir['basedir']);
 }
 if( !defined( 'DPWAP_DIR' ) ) {
   define( 'DPWAP_DIR', dirname( __FILE__ ) );			// Plugin dir
@@ -60,64 +60,64 @@ add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 
 // Add new page for download dashboard
 function dpwap_register_menupage(){
-    add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
-    add_menu_page('dpwap activate', 'dpwap activate', 'administrator','dpwap-activate', 'dpwap_package_activate_func');
-    add_menu_page('dpwap status', 'dpwap status', 'administrator','activate-status', 'dpwap_all_activate_status_func');
-    remove_menu_page('mul_upload');
-    remove_menu_page('dpwap-activate');
-    remove_menu_page('activate-status');
-  }
-  function dpwap_multiple_upload_func(){
-    require_once 'multiple_upload_plugin.php'; 
-  }
+	add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
+	add_menu_page('dpwap activate', 'dpwap activate', 'administrator','dpwap-activate', 'dpwap_package_activate_func');
+	add_menu_page('dpwap status', 'dpwap status', 'administrator','activate-status', 'dpwap_all_activate_status_func');
+	remove_menu_page('mul_upload');
+	remove_menu_page('dpwap-activate');
+	remove_menu_page('activate-status');
+}
+function dpwap_multiple_upload_func(){
+	require_once 'multiple_upload_plugin.php'; 
+}
 
-  function dpwap_package_activate_func(){
-   require_once 'feature-package.php'; 	
-  }
+function dpwap_package_activate_func(){
+	require_once 'feature-package.php'; 	
+}
 
-  function dpwap_all_activate_status_func(){
-  require_once 'activate-status.php'; 	
-  }
+function dpwap_all_activate_status_func(){
+	require_once 'activate-status.php'; 	
+}
 
 add_action( 'admin_menu', 'dpwap_register_menupage' );
 
 // Add download link to plugins bulk action dropdown
 function add_download_bulk_actions( $bulk_array ) { 
 	$lastKey=@end(array_keys($bulk_array));
-    if($lastKey=='delete-selected'){ 
-    unset($bulk_array['delete-selected']);
-  	$bulk_array['all_download'] = 'Download';
-    $bulk_array['delete-selected'] = 'Delete';
-    }else{
-    $bulk_array['all_download'] = 'Download';	
-    }
-  	return $bulk_array;
+	if($lastKey=='delete-selected'){ 
+		unset($bulk_array['delete-selected']);
+		$bulk_array['all_download'] = 'Download';
+		$bulk_array['delete-selected'] = 'Delete';
+	}else{
+		$bulk_array['all_download'] = 'Download';	
+	}
+	return $bulk_array;
 }
 add_filter( 'bulk_actions-plugins', 'add_download_bulk_actions');
 
 
 //admin multiple download function
 function dpwap_admin_multiple_download_func() {
-    global $pagenow;
-    if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action']=='multiple_download') {
-    	  $dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
-          if(!empty($dpwap_plugins))
-          {
-            foreach($dpwap_plugins as $pluginUrl){
-             $downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
-             ?>
-              <script language="javascript" type="text/javascript">
-                  //window.open("<?php echo $downUrl; ?>");
-                  var iframe = document.createElement('iframe');
-                               iframe.src = "<?php echo $downUrl; ?>";
-                               iframe.style.display = 'none';
-                              document.body.appendChild(iframe);
-                   </script>
-                 <?php  
-             }
-          }
+	global $pagenow;
+	if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action']=='multiple_download') {
+		$dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
+		if(!empty($dpwap_plugins))
+		{
+			foreach($dpwap_plugins as $pluginUrl){
+				$downUrl=site_url()."/wp-content/uploads/dpwap_plugins/".$pluginUrl;
+				?>
+				<script language="javascript" type="text/javascript">
+                	//window.open("<?php echo $downUrl; ?>");
+	                var iframe = document.createElement('iframe');
+	                iframe.src = "<?php echo $downUrl; ?>";
+	                iframe.style.display = 'none';
+	                document.body.appendChild(iframe);
+            	</script>
+            	<?php  
+        	}
+    	}
     	delete_option("dpwap_downloads_url");
-  }
+	}
 }
 add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
 
@@ -125,69 +125,69 @@ add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
 //all plugins activate get ajax response code
 function dpwap_plugin_multiple_download_func() {
 	$strPluginCount = (isset($_POST['plugin_count'])) ? $_POST['plugin_count'] : '0';
-	 if($strPluginCount== '1'){
+	if($strPluginCount== '1'){
 		if(file_exists( DPWAP_PLUGINS_TEMP ) ) {
-		  $folder=DPWAP_PLUGINS_TEMP;
-		  $files = glob("$folder/*");
-	      foreach($files as $file){
-			unlink($file);
-		   }
-	 	 }
- 	  }
-	
-	    $dpwap_download = $_POST['pluginData'];
-        $dpwap_download_base = basename( $dpwap_download, '.php' );
-   
-        $explode = explode( '/', $dpwap_download );
-		$folderpath    = $explode[0];
-
-		if(!file_exists( DPWAP_PLUGINS_TEMP ) ) {
-		   mkdir( DPWAP_PLUGINS_TEMP, 0777, true );
-		 }
-
-				$folder_path  = WP_PLUGIN_DIR.'/'.$folderpath;
-				$zipPath=$folderpath.'.zip';
-				if($geturls=get_option("dpwap_downloads_url")){
-				$getDwnurls=maybe_unserialize($geturls);
-                array_push($getDwnurls,$zipPath);
-				$plugins_arry=maybe_serialize($getDwnurls);
-				update_option("dpwap_downloads_url",$plugins_arry);
-                }else{ 
-                    $plugins_arry[]=$zipPath;
-                	update_option("dpwap_downloads_url",$plugins_arry); 
-                }
- 	          
-				
-				$rlpath=DPWAP_PLUGINS_TEMP.'/'.$folderpath;
-				$root_path    = realpath( $folder_path );
-			
-			$zip = new ZipArchive();
-			$zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
-			
-			$files = new RecursiveIteratorIterator(
-			    new RecursiveDirectoryIterator( $root_path ),
-			    RecursiveIteratorIterator::LEAVES_ONLY
-			);
-			
-			foreach( $files as $name=>$file ){
-			    
-				if ( !$file->isDir() ){
-			        
-					$file_path	   = $file->getRealPath();
-				    $relative_path = substr( $file_path, strlen( $root_path ) + 1 );
-			        $zip->addFile( $file_path, $relative_path );
-			    }
+			$folder=DPWAP_PLUGINS_TEMP;
+			$files = glob("$folder/*");
+			foreach($files as $file){
+				unlink($file);
 			}
+		}
+	}
+	
+	$dpwap_download = $_POST['pluginData'];
+	$dpwap_download_base = basename( $dpwap_download, '.php' );
 
-			$zip->close();
-			
+	$explode = explode( '/', $dpwap_download );
+	$folderpath    = $explode[0];
+
+	if(!file_exists( DPWAP_PLUGINS_TEMP ) ) {
+		mkdir( DPWAP_PLUGINS_TEMP, 0777, true );
+	}
+
+	$folder_path  = WP_PLUGIN_DIR.'/'.$folderpath;
+	$zipPath=$folderpath.'.zip';
+	if($geturls=get_option("dpwap_downloads_url")){
+		$getDwnurls=maybe_unserialize($geturls);
+		array_push($getDwnurls,$zipPath);
+		$plugins_arry=maybe_serialize($getDwnurls);
+		update_option("dpwap_downloads_url",$plugins_arry);
+	}else{ 
+		$plugins_arry[]=$zipPath;
+		update_option("dpwap_downloads_url",$plugins_arry); 
+	}
+
+
+	$rlpath=DPWAP_PLUGINS_TEMP.'/'.$folderpath;
+	$root_path    = realpath( $folder_path );
+
+	$zip = new ZipArchive();
+	$zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+	$files = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator( $root_path ),
+		RecursiveIteratorIterator::LEAVES_ONLY
+	);
+
+	foreach( $files as $name=>$file ){
+
+		if ( !$file->isDir() ){
+
+			$file_path	   = $file->getRealPath();
+			$relative_path = substr( $file_path, strlen( $root_path ) + 1 );
+			$zip->addFile( $file_path, $relative_path );
+		}
+	}
+
+	$zip->close();
+
 }
 
 add_action( 'wp_ajax_dpwap_plugin_download_url', 'dpwap_plugin_multiple_download_func');
 
 //admin multiple download function
 //function dpwap_setting_popup_func() {
-	
+
     //global $pagenow;
     //if ( $pagenow == 'plugins.php') {
 //      if(!get_option('dpwap_popup_status')){	
@@ -199,30 +199,30 @@ add_action( 'wp_ajax_dpwap_plugin_download_url', 'dpwap_plugin_multiple_download
 //}
 
 function dpwap_setting_popup_func() {
-   
-    global $pagenow;
-    if ( $pagenow == 'plugins.php') {
-      if(!get_option('dpwap_popup_status')){  
-        ?>
-            <script language="javascript">
-               	jQuery(window).load(function() {
-                  	jQuery('#dpwap_modal').modal();
-                });
-         	</script>
-        <?php
-           require_once 'dpwap_setting.php';
-           add_option('dpwap_popup_status',1);    
-      }
-     require_once 'dpwap_setting.php';
-  }
+
+	global $pagenow;
+	if ( $pagenow == 'plugins.php') {
+		if(!get_option('dpwap_popup_status')){  
+			?>
+			<script language="javascript">
+				jQuery(window).load(function() {
+					jQuery('#dpwap_modal').modal();
+				});
+			</script>
+			<?php
+			require_once 'dpwap_setting.php';
+			add_option('dpwap_popup_status',1);    
+		}
+		require_once 'dpwap_setting.php';
+	}
 }
 
 function dpwap_upload_popup_func() {
-   
-    global $pagenow;
-    if ( $pagenow == 'plugin-install.php') {
-     require_once 'dpwap_setting.php';
-  }
+
+	global $pagenow;
+	if ( $pagenow == 'plugin-install.php') {
+		require_once 'dpwap_setting.php';
+	}
 }
 
 add_action( 'admin_footer', 'dpwap_setting_popup_func' );
@@ -231,52 +231,52 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 function wpdap_custom_admin_head_loader() {
 	$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
 	echo "<div id='dpwapLoader'>";
-    echo  "<img src='{$imgUrl}'>";
+	echo  "<img src='{$imgUrl}'>";
 	echo "<p>This may take few minutes based on the number and size of the plugins</p></div>";
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
 
 //admin multiple upload form
 function dpwap_multiple_upload_admin_func(){
-    global $pagenow;
-    if ( $pagenow == 'plugin-install.php' ) {
-        require_once 'dpwap_setting.php';
-     	$redirect=admin_url('admin.php?page=mul_upload');
-    	echo '<div class="wrap" id="btn_upload">
-            <a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
-      </div>';
- 	}
+	global $pagenow;
+	if ( $pagenow == 'plugin-install.php' ) {
+		require_once 'dpwap_setting.php';
+		$redirect=admin_url('admin.php?page=mul_upload');
+		echo '<div class="wrap" id="btn_upload">
+		<a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
+		</div>';
+	}
 }
 add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
-   $waplugin = $_POST['dpwap_url'];
-   $waplugins = get_option('active_plugins');
-    if($waplugins){
+	$waplugin = $_POST['dpwap_url'];
+	$waplugins = get_option('active_plugins');
+	if($waplugins){
 		if (!in_array($waplugin, $waplugins)) {
-			 array_push($waplugins,$waplugin);
-			 update_option('active_plugins',$waplugins);
-			}
+			array_push($waplugins,$waplugin);
+			update_option('active_plugins',$waplugins);
 		}
+	}
 }
 add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
 
- 
+
  //user based feature select function
 function dpwap_feature_select_func() { 
-    $waplugin = $_POST['dpwap_feature']; 
-        foreach ($waplugin as $value) {
-     	if($value == 1){ 
-     	$feature1=1;
-     	}elseif (($value >= 2) && ($value <= 8)) {
-   	    $feature2 =1;
-   	    }elseif(($value >= 9) && ($value <= 15)){
-        $feature3 =1;
-   	    }else{  $feature4 =1;   }
-     }
-      require_once 'dpwap-add-feature.php';
-       wp_die(); 
+	$waplugin = $_POST['dpwap_feature']; 
+	foreach ($waplugin as $value) {
+		if($value == 1){ 
+			$feature1=1;
+		}elseif (($value >= 2) && ($value <= 8)) {
+			$feature2 =1;
+		}elseif(($value >= 9) && ($value <= 15)){
+			$feature3 =1;
+		}else{  $feature4 =1;   }
+	}
+	require_once 'dpwap-add-feature.php';
+	wp_die(); 
 }
 add_action( 'wp_ajax_dpwap_feature_select', 'dpwap_feature_select_func'); 
 
@@ -309,13 +309,13 @@ function dpwap_download_link( $links, $plugin_file ){
 	}
 	
 	/*$download_link = array(
-						'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span></span>',
+		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span></span>',
 	);*/
 
 	$download_link = array(
-						'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a></span>',
+		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a></span>',
 	);
-	
+
 	return array_merge( $links, $download_link );
 }
 
@@ -326,23 +326,23 @@ function dpwap_download_link( $links, $plugin_file ){
  * @since 1.0.0
  */
 function dpwap_delete_temp_folder( $path ){
-    
+
 	if( is_dir( $path ) === true ) {
-        
+
 		$files = array_diff( scandir( $path ), array( '.', '..' ) );
 
-        foreach( $files as $file ){
-            
-        	dpwap_delete_temp_folder( realpath( $path ) . '/' . $file );
-        }
+		foreach( $files as $file ){
 
-        return rmdir( $path );
-        
-    } else if( is_file( $path ) === true ) {
-        return unlink($path);
-    }
+			dpwap_delete_temp_folder( realpath( $path ) . '/' . $file );
+		}
 
-    return false;
+		return rmdir( $path );
+
+	} else if( is_file( $path ) === true ) {
+		return unlink($path);
+	}
+
+	return false;
 }
 
 /**
@@ -366,7 +366,7 @@ function dpwap_download(){
 		}
 		
 		if( in_array( $dpwap_download, $plugins_arr ) ){
-		
+
 			$folder		    = $_GET['f'];
 			
 			if( $folder == 2 ) {
@@ -395,19 +395,19 @@ function dpwap_download(){
 			$zip->open( $folder_path.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 			
 			$files = new RecursiveIteratorIterator(
-			    new RecursiveDirectoryIterator( $root_path ),
-			    RecursiveIteratorIterator::LEAVES_ONLY
+				new RecursiveDirectoryIterator( $root_path ),
+				RecursiveIteratorIterator::LEAVES_ONLY
 			);
 			
 			foreach( $files as $name=>$file ){
-			    
+
 				if ( !$file->isDir() ){
-			        
+
 					$file_path	   = $file->getRealPath();
-			        $relative_path = substr( $file_path, strlen( $root_path ) + 1 );
-			        
-			        $zip->addFile( $file_path, $relative_path );
-			    }
+					$relative_path = substr( $file_path, strlen( $root_path ) + 1 );
+
+					$zip->addFile( $file_path, $relative_path );
+				}
 			}
 			
 			$zip->close();
@@ -420,17 +420,17 @@ function dpwap_download(){
 			
 			if( file_exists( $zip_file ) ) {
 				
-			    header('Content-Description: File Transfer');
-			    header('Content-Type: application/octet-stream');
-			    header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
-			    header('Expires: 0');
-			    header('Cache-Control: must-revalidate');
-			    header('Pragma: public');
-			    header('Content-Length: ' . filesize($zip_file));
-			    header('Set-Cookie:fileLoading=true');
-			    readfile($zip_file);
-			    unlink($zip_file);
-			    exit;
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
+				header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($zip_file));
+				header('Set-Cookie:fileLoading=true');
+				readfile($zip_file);
+				unlink($zip_file);
+				exit;
 			}
 		}
 	}
@@ -438,18 +438,17 @@ function dpwap_download(){
 add_action( 'admin_init', 'dpwap_download' );
 
 // sk_upload_max_increase_upload
- function dpwap_max_increase_upload()
-    {
-        $max_size = 640 * 1024 * 1024;
-        return $max_size;
-    } // upload_max_increase_upload
+/*function dpwap_max_increase_upload()
+{
+    $max_size = 640 * 1024 * 1024;
+    return $max_size;
+} // upload_max_increase_upload
 
-add_filter('upload_size_limit', 'dpwap_max_increase_upload');
+add_filter('upload_size_limit', 'dpwap_max_increase_upload');*/
 
 // plugin uninstallation
 register_uninstall_hook( __FILE__, 'dpwap_func_uninstall' );
 function dpwap_func_uninstall() {
-    delete_option( 'dpwap_popup_status' );
-    unlink(DPWAP_PLUGINS_TEMP);
+	delete_option( 'dpwap_popup_status' );
+	unlink(DPWAP_PLUGINS_TEMP);
 }
-
