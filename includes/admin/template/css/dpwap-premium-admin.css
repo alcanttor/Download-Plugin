@@ -1,0 +1,16 @@
+.dpwap-progress-container {
+    border: #0FA015 1px solid;
+    padding: 5px 0px;
+    margin: 30px 0px;
+    border-radius: 4px;
+    text-align: center;
+}
+.dpwap-progress-bar {
+    background-color: #12CC1A;
+    height: 20px;
+    color: #FFFFFF;
+    width: 0%;
+    -webkit-transition: width .3s;
+    -moz-transition: width .3s;
+    transition: width .3s;
+}
