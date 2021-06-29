@@ -99,8 +99,8 @@ class Dpwap_Premium_Helper{
         $html = '';
         $html .= '<h3>'.__( 'Inserting and updating data', 'download-plugin-premium' ).'</h3>';
         $html .= '<div style="overflow-x:auto;">';
-        $html .= '<table id="dpwap_results" class="table"><thead><tr>';
-            $html .= '<th>'. __( 'Row', 'download-plugin-premium' ).'</th>';
+        $html .= '<table id="dpwap_results" class="wp-list-table widefat striped table-view-list"><thead><tr>';
+            $html .= '<th scope="col" class="manage-column">'. __( 'Row', 'download-plugin-premium' ).'</th>';
                 foreach( $headers as $element ): 
                     $html .= '<th>' . $element . '</th>'; 
                 endforeach;
@@ -162,18 +162,18 @@ class Dpwap_Premium_Helper{
         if(empty($errors))
             return;
 
-        $html = '<h3>'.__( 'Errors, warnings and notices', 'download-plugin-premium' ).'</h3>';
-        $html .= '<table id="dpwap_errors" class="table"><thead><tr>';
-                    $html .= '<th>'.__( 'Row', 'download-plugin-premium' ).'</th>';
-                    $html .= '<th>'.__( 'Details', 'download-plugin-premium' ).'</th>';
-                    $html .= '<th>'.__( 'Type', 'download-plugin-premium' ).'</th>';
+        $html = '<h2>'.__( 'Errors, warnings and notices', 'download-plugin-premium' ).'</h2>';
+        $html .= '<table id="dpwap_errors" class="wp-list-table widefat striped table-view-list"><thead><tr>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Row', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Details', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Type', 'download-plugin-premium' ).'</th>';
             $html .= '</tr>
             </thead>
             <tfoot>
                 <tr>';
-                    $html .= '<th>'.__( 'Row', 'download-plugin-premium' ).'</th>';
-                    $html .= '<th>'.__( 'Details', 'download-plugin-premium' ).'</th>';
-                    $html .= '<th>'.__( 'Type', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Row', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Details', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Type', 'download-plugin-premium' ).'</th>';
             $html .= '</tr>
             </tfoot>
             <tbody>';
@@ -189,21 +189,21 @@ class Dpwap_Premium_Helper{
     }
 
     public function print_results( $results, $errors ){
-        $html = '<h3>'.__( 'Results', 'download-plugin-premium' ).'</h3>';
-        $html .= '<table id="dpwap_errors" class="table"><tbody><tr>';
-                    $html .= '<th>'.__( 'Users processed', 'download-plugin-premium' ).'</th>';
+        $html = '<h2>'.__( 'Results', 'download-plugin-premium' ).'</h2>';
+        $html .= '<table id="dpwap_errors" class="wp-list-table widefat striped table-view-list"><tbody><tr>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Users processed', 'download-plugin-premium' ).'</th>';
                     $html .= '<td>'.($results['created'] + $results['updated']).'</td>';
                 $html .= '</tr>
                 <tr>';
-                    $html .= '<th>'.__( 'Users created', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Users created', 'download-plugin-premium' ).'</th>';
                     $html .= '<td>'.$results['created'].'</td>';
                 $html .= '</tr>
                 <tr>';
-                    $html .= '<th>'.__( 'Users updated', 'download-plugin-premium' ).'</th>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Users updated', 'download-plugin-premium' ).'</th>';
                     $html .= '<td>'.$results['updated'].'</td>';
                 $html .= '</tr>
                 <tr>';
-                    $html .= '<th>'.__( 'Errors, warnings and notices found', 'download-plugin-premium' ).'</td>';
+                    $html .= '<th scope="col" class="manage-column">'.__( 'Errors, warnings and notices found', 'download-plugin-premium' ).'</td>';
                     $html .= '<td>'.count( $errors ).'</td>';
                 $html .= '</tr>
             </tbody>
