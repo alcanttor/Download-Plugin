@@ -51,10 +51,17 @@ load_plugin_textdomain( 'download-plugin', false, dirname( plugin_basename( __FI
  * @since 1.0.0
  */
 function dpwap_admin_scripts( $hook ){
-	wp_enqueue_script( 'up_admin_script', DPWAP_URL.'js/bootstrap.min.js', array('jquery'));
-	wp_enqueue_script( 'up_admin_func', DPWAP_URL.'js/multiple.js',array(),'6.1');
-	wp_register_style( 'dpwap-admin-style', DPWAP_URL.'/css/dpwap-admin.css' );
-	wp_enqueue_style( 'dpwap-admin-style' );
+	global $pagenow;
+	$isDpPage = 0;
+	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] = 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+		$isDpPage = 1;
+	}
+	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
+		wp_enqueue_script( 'up_admin_script', DPWAP_URL.'js/bootstrap.min.js', array('jquery'));
+		wp_enqueue_script( 'up_admin_func', DPWAP_URL.'js/multiple.js',array(),'6.1');
+		wp_register_style( 'dpwap-admin-style', DPWAP_URL.'/css/dpwap-admin.css' );
+		wp_enqueue_style( 'dpwap-admin-style' );
+	}
 }
 add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 
@@ -229,10 +236,17 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 
 
 function wpdap_custom_admin_head_loader() {
-	$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
-	echo "<div id='dpwapLoader'>";
-	echo  "<img src='{$imgUrl}'>";
-	echo "<p>This may take few minutes based on the number and size of the plugins</p></div>";
+	global $pagenow;
+	$isDpPage = 0;
+	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] = 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+		$isDpPage = 1;
+	}
+	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
+		$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
+		echo "<div id='dpwapLoader'>";
+		echo  "<img src='{$imgUrl}'>";
+		echo "<p>This may take few minutes based on the number and size of the plugins</p></div>";
+	}
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
 
