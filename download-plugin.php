@@ -53,7 +53,7 @@ load_plugin_textdomain( 'download-plugin', false, dirname( plugin_basename( __FI
 function dpwap_admin_scripts( $hook ){
 	global $pagenow;
 	$isDpPage = 0;
-	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] = 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] == 'activate-status' || $_GET['page'] == 'dpwap-activate')){
 		$isDpPage = 1;
 	}
 	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
@@ -106,7 +106,7 @@ add_filter( 'bulk_actions-plugins', 'add_download_bulk_actions');
 //admin multiple download function
 function dpwap_admin_multiple_download_func() {
 	global $pagenow;
-	if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action']=='multiple_download') {
+	if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action'] == 'multiple_download') {
 		$dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
 		if(!empty($dpwap_plugins))
 		{
@@ -238,7 +238,7 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 function wpdap_custom_admin_head_loader() {
 	global $pagenow;
 	$isDpPage = 0;
-	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] = 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] == 'activate-status' || $_GET['page'] == 'dpwap-activate')){
 		$isDpPage = 1;
 	}
 	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
