@@ -265,12 +265,14 @@ add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
-	$waplugin = $_POST['dpwap_url'];
-	$waplugins = get_option('active_plugins');
-	if($waplugins){
-		if (!in_array($waplugin, $waplugins)) {
-			array_push($waplugins,$waplugin);
-			update_option('active_plugins',$waplugins);
+	if(isset($_POST['nonce']) && base64_decode($_POST['nonce']) == 'dpwap-metagauss'){
+		$waplugin = $_POST['dpwap_url'];
+		$waplugins = get_option('active_plugins');
+		if($waplugins){
+			if (!in_array($waplugin, $waplugins)) {
+				array_push($waplugins,$waplugin);
+				update_option('active_plugins',$waplugins);
+			}
 		}
 	}
 }

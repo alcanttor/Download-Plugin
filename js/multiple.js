@@ -44,13 +44,15 @@ jQuery(document).ready(function() {
     	 var dpwapUrl = jQuery(this). attr("href");
         
     	 var dpwapUrl2 = decodeURIComponent(dpwapUrl).split("&");
-    	 var dpwapUrl3= dpwapUrl2[1].split('=');
+    	 var dpwapUrl3 = dpwapUrl2[1].split('=');
+         var dpwapNoce = btoa('dpwap-metagauss');
     	 jQuery.ajax({
             url    : ajaxurl,
             type : 'post',
             data : {
                 action : 'dpwap_plugin_activate',
-                dpwap_url : dpwapUrl3[1]
+                dpwap_url : dpwapUrl3[1],
+                nonce: dpwapNoce
             },
             success : function( response ) {
             	alert("Plugin activated successfully");
