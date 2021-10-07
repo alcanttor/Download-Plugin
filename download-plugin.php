@@ -265,8 +265,8 @@ add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
-	if(isset($_POST['nonce']) && base64_decode($_POST['nonce']) == 'dpwap-metagauss'){
-		$waplugin = $_POST['dpwap_url'];
+	if(isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce']) == 'activate'){
+		$waplugin = sanitize_text_field($_POST['dpwap_url']);
 		$waplugins = get_option('active_plugins');
 		if($waplugins){
 			if (!in_array($waplugin, $waplugins)) {

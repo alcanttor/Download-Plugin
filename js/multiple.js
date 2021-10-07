@@ -40,13 +40,12 @@ function activateAllPLugins(){
 //single plugin activated function
 jQuery(document).ready(function() {
     jQuery('.dpwap_inner a').click(function() {
-    	 var that = this;
-    	 var dpwapUrl = jQuery(this). attr("href");
-        
-    	 var dpwapUrl2 = decodeURIComponent(dpwapUrl).split("&");
-    	 var dpwapUrl3 = dpwapUrl2[1].split('=');
-         var dpwapNoce = btoa('dpwap-metagauss');
-    	 jQuery.ajax({
+    	var that = this;
+    	var dpwapUrl = jQuery(this). attr("href");
+        var dpwapUrl2 = decodeURIComponent(dpwapUrl).split("&");
+    	var dpwapUrl3 = dpwapUrl2[1].split('=');
+        var dpwapNoce = dpwapUrl2[2].split('=');
+    	jQuery.ajax({
             url    : ajaxurl,
             type : 'post',
             data : {
@@ -59,7 +58,7 @@ jQuery(document).ready(function() {
             	jQuery(that).replaceWith('<h4>Plugin activated</h4>');
             }
         }); 
-         return false;
+        return false;
     });
     
     
