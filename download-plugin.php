@@ -169,8 +169,11 @@ function dpwap_plugin_multiple_download_func() {
 	$root_path    = realpath( $folder_path );
 
 	$zip = new ZipArchive();
-	$zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
-
+	$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+	if($zipArchive !== TRUE){
+			_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
+    	exit;
+	}
 	$files = new RecursiveIteratorIterator(
 		new RecursiveDirectoryIterator( $root_path ),
 		RecursiveIteratorIterator::LEAVES_ONLY
@@ -265,7 +268,7 @@ add_action('admin_notices', 'dpwap_multiple_upload_admin_func');
 
 //all plugins activate get ajax response code
 function dpwap_plugin_activate_func() {
-	if(isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce']) == 'activate'){
+	if(isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce']) == 'activate' && current_user_can('install_plugins')) {
 		$waplugin = sanitize_text_field($_POST['dpwap_url']);
 		$waplugins = get_option('active_plugins');
 		if($waplugins){
@@ -276,7 +279,9 @@ function dpwap_plugin_activate_func() {
 		}
 	}
 }
-add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
+if(current_user_can('install_plugins')) {
+	add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
+}
 
 
  //user based feature select function
@@ -408,8 +413,12 @@ function dpwap_download(){
 			$root_path    = realpath( $folder_path );
 			
 			$zip = new ZipArchive();
-			$zip->open( $folder_path.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
-			
+			$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+			if($zipArchive !== TRUE){
+					_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
+				exit;
+			}
+
 			$files = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $root_path ),
 				RecursiveIteratorIterator::LEAVES_ONLY
