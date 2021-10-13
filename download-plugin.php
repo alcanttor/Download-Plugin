@@ -415,7 +415,7 @@ function dpwap_download(){
 			$zip = new ZipArchive();
 			$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 			if($zipArchive !== TRUE){
-					_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
+				_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
 				exit;
 			}
 
