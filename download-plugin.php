@@ -279,10 +279,8 @@ function dpwap_plugin_activate_func() {
 		}
 	}
 }
-if(current_user_can('install_plugins')) {
-	add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
-}
 
+add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
 
  //user based feature select function
 function dpwap_feature_select_func() { 
