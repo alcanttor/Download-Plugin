@@ -73,7 +73,7 @@ class dpwapuploader
 	function dpwap_plugin_all_activate(){ 
 	    $dpwapNum=get_option("dpwap_plugins");
 	    for($i=1; $i<=$dpwapNum; $i++){
-	 	    $waplugin=$_POST["dpwap_plglist_$i"];
+	 	    $waplugin = sanitize_text_field($_POST["dpwap_plglist_$i"]);
 	 	    $waplugins = get_option('active_plugins');
             if($waplugins){
 		        if (!in_array($waplugin, $waplugins)) {
@@ -325,7 +325,7 @@ class dpwapuploader
                     }
                 }
                 else{
-                    echo 'This is <b>'.esc_html($dpwap_locFilenm).'</b> '.esc_html__( 'not a valid zip archive.', 'dpwap' );
+                    echo esc_html__('This is', 'dpwap') .' <b>'.esc_html($dpwap_locFilenm).'</b> '.esc_html__( 'not a valid zip archive.', 'dpwap' );
                 }
             }
             if($dpwap_tempurls)

@@ -70,7 +70,6 @@ function dpwap_register_menupage(){
 	add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
 	add_menu_page('dpwap status', 'dpwap status', 'administrator','activate-status', 'dpwap_all_activate_status_func');
 	remove_menu_page('mul_upload');
-	remove_menu_page('dpwap-activate');
 	remove_menu_page('activate-status');
 }
 function dpwap_multiple_upload_func(){
@@ -111,7 +110,7 @@ function dpwap_admin_multiple_download_func() {
 				<script language="javascript" type="text/javascript">
                 	//window.open("<?php echo $downUrl; ?>");
 	                var iframe = document.createElement('iframe');
-	                iframe.src = "<?php echo $downUrl; ?>";
+	                iframe.src = "<?php echo esc_url($downUrl); ?>";
 	                iframe.style.display = 'none';
 	                document.body.appendChild(iframe);
             	</script>
@@ -370,74 +369,46 @@ function dpwap_download(){
 		global $dpwap_all_plugins;
 		$all_plugins    = array_keys( $dpwap_all_plugins );
 		$plugins_arr    = array();
-		$dpwap_download = $_GET['dpwap_download'];
-		
-		foreach( $all_plugins as $key=>$value ){
-			
-			$explode = explode( '/', $value );
-			
+		$dpwap_download = sanitize_text_field($_GET['dpwap_download']);
+		foreach( $all_plugins as $key=>$value ){			
+			$explode = explode( '/', $value );			
 			array_push( $plugins_arr, $explode[0] );
-		}
-		
+		}		
 		if( in_array( $dpwap_download, $plugins_arr ) ){
-
-			$folder		    = $_GET['f'];
-			
+			$folder = sanitize_text_field($_GET['f']);
 			if( $folder == 2 ) {
-				
 				$dpwap_download = basename( $dpwap_download, '.php' );
-				
 				$folder_path  = WP_PLUGIN_DIR.'/'.$dpwap_download;
-				
 				if( !file_exists( $folder_path ) ) {
 					mkdir( $folder_path, 0777, true );
 				}
-				
 				$source       = $folder_path.'.php';
 				$destination  = $folder_path.'/'.$dpwap_download.'.php';
-				
 				copy( $source, $destination );
-				
 			} else {
 				$folder_path  = WP_PLUGIN_DIR.'/'.$dpwap_download;
-				
 			}
-			
 			$root_path    = realpath( $folder_path );
-			
 			$zip = new ZipArchive();
-			$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
-			if($zipArchive !== TRUE){
-				esc_html__('Error: Unable to create zip file as zip extension not found.', 'dpwap');
-				exit;
-			}
-
+			$zip->open( $folder_path.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 			$files = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $root_path ),
 				RecursiveIteratorIterator::LEAVES_ONLY
 			);
-			
-			foreach( $files as $name=>$file ){
-
+			foreach( $files as $name => $file ){
 				if ( !$file->isDir() ){
-
 					$file_path	   = $file->getRealPath();
 					$relative_path = substr( $file_path, strlen( $root_path ) + 1 );
-
 					$zip->addFile( $file_path, $relative_path );
 				}
 			}
-			
 			$zip->close();
-			
 			if( $folder == 2 ){
 				dpwap_delete_temp_folder( $folder_path );
 			}
 			// Download Zip
 			$zip_file = $folder_path.'.zip';
-			
 			if( file_exists( $zip_file ) ) {
-				
 				header('Content-Description: File Transfer');
 				header('Content-Type: application/octet-stream');
 				header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
