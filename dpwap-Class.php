@@ -37,62 +37,60 @@ class dpwapuploader
             
         }			
         else{
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		 $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('type', 'title', 'nonce', 'url') ) ); 
-		 echo "<div class='dpwap_inner ".$whform."' id='dpwap_sec_".$dpid."'>";
-		 echo "<h4>".basename($package)."</h4>";
-		 $res=$upgrader->install($package);
-		 if($res){ echo "<div id='activate_yes'></div>"; }
-		 update_option("dpwap_plugins",$dpid);
-		 echo '<input type="hidden" name="dpid" value="'.$dpid.'">';
-		 echo '<input type="hidden" id="dpwap_plglist" name="dpwap_plglist_'.$dpid.'" value="'.$upgrader->plugin_info().'">';
- 		
-
+		    include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		    $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('type', 'title', 'nonce', 'url') ) ); 
+		    echo "<div class='dpwap_inner ".esc_attr($whform)."' id='dpwap_sec_".esc_attr($dpid)."'>";
+		    echo "<h4>".esc_html(basename( $package ) )."</h4>";
+		    $res=$upgrader->install($package);
+		    if($res){ echo "<div id='activate_yes'></div>"; }
+		    update_option("dpwap_plugins",$dpid);
+		    echo '<input type="hidden" name="dpid" value="'.esc_attr($dpid).'">';
+		    echo '<input type="hidden" id="dpwap_plglist" name="dpwap_plglist_'.esc_attr($dpid).'" value="'.esc_attr($upgrader->plugin_info()).'">';
 			//remove temp files
 			if($whform == "upload_locFiles"){
 				@unlink($package);
 			}
 			
 			if (!$upgrader->plugin_info()){
-				echo $res;
+				echo esc_html($res);
 			} elseif($dpwap_action =="package_activate"){
 			 	$waplugins = get_option('active_plugins');
 			 	if($waplugins){
 			 		$puginsToActiv = array($upgrader->plugin_info());
 			 		foreach ($puginsToActiv as $waplugin){
 			 			if (!in_array($waplugin, $waplugins)) {
-			 				 array_push($waplugins,$waplugin);
-			 				 update_option('active_plugins',$waplugins);
+			 				array_push($waplugins,$waplugin);
+			 				update_option('active_plugins',$waplugins);
 			 			}
 			 		}
 			 	}
-			 	_e('<b class="mpi_act">Plugin activated successfully.</b><br/>','mpi');
-			 }
-		 echo "</div>";
+			 	echo '<b class="mpi_act">'.esc_html__( 'Plugin activated successfully.', 'dpwap' ).'</b><br/>';
+			}
+		    echo "</div>";
         }
     }
 	
 	function dpwap_plugin_all_activate(){ 
-	 $dpwapNum=get_option("dpwap_plugins");
-	 for($i=1; $i<=$dpwapNum; $i++){
-	 	$waplugin=$_POST["dpwap_plglist_$i"];
-	 	$waplugins = get_option('active_plugins');
-        if($waplugins){
-		  if (!in_array($waplugin, $waplugins)) {
-			 array_push($waplugins,$waplugin);
-			 update_option('active_plugins',$waplugins);
-		  }
-		  if(!empty($waplugin)){
-		  $plgname= explode("/",$waplugin);
-		echo "<b>".$plgname[0].".zip</b><br>";
-		echo '<p>Unpacking the package...</p>';
-		echo '<p>Installing the plugin...</p>';
-		echo '<p>Plugin installed sucessfully.</p>';
-		echo "<hr>";
-		   }
-		}
-	 } 
- }
+	    $dpwapNum=get_option("dpwap_plugins");
+	    for($i=1; $i<=$dpwapNum; $i++){
+	 	    $waplugin=$_POST["dpwap_plglist_$i"];
+	 	    $waplugins = get_option('active_plugins');
+            if($waplugins){
+		        if (!in_array($waplugin, $waplugins)) {
+			        array_push($waplugins,$waplugin);
+			        update_option('active_plugins',$waplugins);
+		        }
+		        if(!empty($waplugin)){
+		            $plgname= explode("/",$waplugin);
+		            echo "<b>".esc_html($plgname[0]).".zip</b><br>";
+		            echo '<p>'.esc_html__('Unpacking the package...', 'dpwap').'</p>';
+		            echo '<p>'.esc_html__('Installing the plugin...', 'dpwap').'</p>';
+		            echo '<p>'.esc_html__('Plugin installed sucessfully.', 'dpwap').'</p>';
+		            echo "<hr>";
+		        }
+		    }
+	    } 
+    }
 	// get plugin information	
     function dpwap_get_plugin($plugin_name){
         $name = $plugin_name;
@@ -201,22 +199,22 @@ class dpwapuploader
                         $r = $response[plugin_basename("$val.php")];
                         if (!$r) 
                         {
-                            echo '<p class="not-found">' . $i . '. <strong>' . $val . '</strong> not found. Try <a href="http://google.com/search?q=' . $val . ' +wordpress">manual</a> install.</p>';
+                            echo '<p class="not-found">' . $i . '. <strong>' . esc_html($val) . '</strong> '. esc_html__('not found. Try', 'dpwap').' <a href="http://google.com/search?q=' . esc_html($val) . ' +wordpress">'.esc_html__('manual', 'dpwap').'</a> '.esc_html__('install', 'dpwap').'.</p>';
                         } 
                         elseif ($r->package) 
                         {
-                            $this->_dpwapflush("<p class=\"found\">$i. Found <strong>" .stripslashes($val). "</strong> ($r->slug, version $r->new_version). Processing installation...</strong></p>");
+                            $this->_dpwapflush("<p class=\"found\">$i. ".esc_html__('Found', 'dpwap')." <strong>" .esc_html($val). "</strong> ($r->slug, version $r->new_version). ".esc_html__('Processing installation...', 'dpwap')."</strong></p>");
                             $this->dpwap_plugin_handle_download($r->slug,$r->package,$dpwap_action,$whform);
 							$dpwap_fileArr[] = $r->slug;
                         } 
                         else
                         {	
-                           echo '<p class="not-found">' . $i . '. Package for <strong><em>' . $val . '</em></strong> not found. Try <a href="' . $r->url . '">manual</a> install.</p>';
+                           echo '<p class="not-found">' . $i . '. '.esc_html__('Package for', 'dpwap').' <strong><em>' . esc_html($val) . '</em></strong> '.esc_html__('not found. Try', 'dpwap').' <a href="' . esc_url($r->url) . '">'.esc_html__('manual', 'dpwap').'</a> '.esc_html__('install', 'dpwap').'.</p>';
                         }
                     } 
                     else
                     {
-                        echo '<p class="not-found">' . $i . '. <strong>' . $val . '</strong> not found. Try <a href="http://google.com/search?q=' . $val . ' +wordpress">manual</a> install.</p>';
+                        echo '<p class="not-found">' . $i . '. <strong>' . esc_html($val) . '</strong> '.esc_html__('not found. Try', 'dpwap').' <a href="http://google.com/search?q=' . esc_html($val) . ' +wordpress">'.esc_html__('manual', 'dpwap').'</a> '.esc_html__('install', 'dpwap').'.</p>';
                     }
                 }
             }
@@ -276,7 +274,7 @@ class dpwapuploader
 		} else {
 			$upload_size_unit = (int) $upload_size_unit;
 		}
-		printf( __( 'Maximum upload file size: %d%s.' ), esc_html($upload_size_unit), esc_html($sizes[$u]) );
+		printf( esc_html__( 'Maximum upload file size: %d%s.' ), esc_html($upload_size_unit), esc_html($sizes[$u]) );
 	}
 	
 	
@@ -288,8 +286,8 @@ class dpwapuploader
 	function dpwap_app_DirTesting(){
 		if(!is_dir(DPWAPUPLOADDIR_PATH.'/dpwap_testing')){ 
 			if(!is_dir(DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp')){
-			  $temp_upload_dir = DPWAPUPLOADDIR_PATH . '/dpwap_logs/files/tmp';
-            @wp_mkdir_p($temp_upload_dir, 0777);
+			    $temp_upload_dir = DPWAPUPLOADDIR_PATH . '/dpwap_logs/files/tmp';
+                @wp_mkdir_p($temp_upload_dir, 0777);
 			}
 
 			if(@mkdir(DPWAPUPLOADDIR_PATH.'/dpwap_testing', 0777)){
@@ -309,33 +307,29 @@ class dpwapuploader
             @ini_set('post_max_size', '640M');
 
             check_admin_referer($this->key);
-            _e('<div class="dpwap_h3">Installing Plugins:</div>','dpwap');
+            echo '<div class="dpwap_h3">'.esc_html__( 'Installing Plugins', 'dpwap' ) .':</div>';
             for($i=0; $i<count($_FILES['dpwap_locFiles']['name']); $i++){
-                $dpwap_locFilenm = $_FILES['dpwap_locFiles']['name'][$i];
-
+                $dpwap_locFilenm = sanitize_file_name($_FILES['dpwap_locFiles']['name'][$i]);
                 if (strpos($dpwap_locFilenm,'mpipluginsbackup') === false){								
                     //Get the temp file path
                     $tmpFilePath = $_FILES['dpwap_locFiles']['tmp_name'][$i];
-
                     //Make sure we have a filepath
                     if ($tmpFilePath != ""){
                         //Setup our new file path
-                        $newFilePath = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/' . $_FILES['dpwap_locFiles']['name'][$i];
+                        $newFilePath = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/' . $dpwap_locFilenm;
 
                         //Upload the file into the temp dir
                         if(@move_uploaded_file($tmpFilePath, $newFilePath)) {
-                                $dpwap_tempurls[] = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/'.$_FILES['dpwap_locFiles']['name'][$i];
+                            $dpwap_tempurls[] = DPWAPUPLOADDIR_PATH.'/dpwap_logs/files/tmp/'.$dpwap_locFilenm;
                         }
                     }
                 }
                 else{
-                    _e('This is <b>'.$dpwap_locFilenm.'</b> not a valid zip archive.','mpi');
+                    echo 'This is <b>'.esc_html($dpwap_locFilenm).'</b> '.esc_html__( 'not a valid zip archive.', 'dpwap' );
                 }
             }
             if($dpwap_tempurls)
             $this->dpwap_get_packages($dpwap_tempurls,"activate","nocreate","upload_locFiles");
 	}
-
-
 }
 ?>

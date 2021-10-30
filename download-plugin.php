@@ -53,7 +53,7 @@ load_plugin_textdomain( 'download-plugin', false, dirname( plugin_basename( __FI
 function dpwap_admin_scripts( $hook ){
 	global $pagenow;
 	$isDpPage = 0;
-	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] == 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+	if(isset($_GET['page']) && (sanitize_text_field($_GET['page']) == 'mul_upload' || sanitize_text_field($_GET['page']) == 'activate-status' || sanitize_text_field($_GET['page']) == 'dpwap-activate')){
 		$isDpPage = 1;
 	}
 	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
@@ -68,7 +68,6 @@ add_action( 'admin_enqueue_scripts', 'dpwap_admin_scripts' );
 // Add new page for download dashboard
 function dpwap_register_menupage(){
 	add_menu_page('multiple upload', 'multiple upload', 'administrator','mul_upload', 'dpwap_multiple_upload_func');
-	add_menu_page('dpwap activate', 'dpwap activate', 'administrator','dpwap-activate', 'dpwap_package_activate_func');
 	add_menu_page('dpwap status', 'dpwap status', 'administrator','activate-status', 'dpwap_all_activate_status_func');
 	remove_menu_page('mul_upload');
 	remove_menu_page('dpwap-activate');
@@ -76,10 +75,6 @@ function dpwap_register_menupage(){
 }
 function dpwap_multiple_upload_func(){
 	require_once 'multiple_upload_plugin.php'; 
-}
-
-function dpwap_package_activate_func(){
-	require_once 'feature-package.php'; 	
 }
 
 function dpwap_all_activate_status_func(){
@@ -106,7 +101,7 @@ add_filter( 'bulk_actions-plugins', 'add_download_bulk_actions');
 //admin multiple download function
 function dpwap_admin_multiple_download_func() {
 	global $pagenow;
-	if ( $pagenow == 'plugins.php' && isset($_GET['action']) && $_GET['action'] == 'multiple_download') {
+	if ( $pagenow == 'plugins.php' && isset($_GET['action']) && sanitize_text_field($_GET['action']) == 'multiple_download') {
 		$dpwap_plugins=maybe_unserialize(get_option('dpwap_downloads_url'));
 		if(!empty($dpwap_plugins))
 		{
@@ -131,7 +126,7 @@ add_action( 'admin_footer', 'dpwap_admin_multiple_download_func' );
 
 //all plugins activate get ajax response code
 function dpwap_plugin_multiple_download_func() {
-	$strPluginCount = (isset($_POST['plugin_count'])) ? $_POST['plugin_count'] : '0';
+	$strPluginCount = (isset($_POST['plugin_count'])) ? sanitize_text_field($_POST['plugin_count']) : '0';
 	if($strPluginCount== '1'){
 		if(file_exists( DPWAP_PLUGINS_TEMP ) ) {
 			$folder=DPWAP_PLUGINS_TEMP;
@@ -142,7 +137,7 @@ function dpwap_plugin_multiple_download_func() {
 		}
 	}
 	
-	$dpwap_download = $_POST['pluginData'];
+	$dpwap_download = sanitize_text_field($_POST['pluginData']);
 	$dpwap_download_base = basename( $dpwap_download, '.php' );
 
 	$explode = explode( '/', $dpwap_download );
@@ -171,7 +166,7 @@ function dpwap_plugin_multiple_download_func() {
 	$zip = new ZipArchive();
 	$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 	if($zipArchive !== TRUE){
-			_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
+		esc_html_e('Error: Unable to create zip file as zip extension not found.', 'dpwap');
     	exit;
 	}
 	$files = new RecursiveIteratorIterator(
@@ -248,7 +243,7 @@ function wpdap_custom_admin_head_loader() {
 		$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
 		echo "<div id='dpwapLoader'>";
 		echo  "<img src='{$imgUrl}'>";
-		echo "<p>This may take few minutes based on the number and size of the plugins</p></div>";
+		echo "<p>". esc_html_e('This may take few minutes based on the number and size of the plugins', 'dpwap')."</p></div>";
 	}
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
@@ -260,7 +255,7 @@ function dpwap_multiple_upload_admin_func(){
 		require_once 'dpwap_setting.php';
 		$redirect=admin_url('admin.php?page=mul_upload');
 		echo '<div class="wrap" id="btn_upload">
-		<a id="mul_upload" class="page-title-action show" href="'.$redirect.'"><span class="upload">Upload Multiple Plugins</span></a>
+		<a id="mul_upload" class="page-title-action show" href="'.esc_url($redirect).'"><span class="upload">'.esc_html__('Upload Multiple Plugins', 'dpwap').'</span></a>
 		</div>';
 	}
 }
@@ -284,7 +279,7 @@ add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
 
  //user based feature select function
 function dpwap_feature_select_func() { 
-	$waplugin = $_POST['dpwap_feature']; 
+	$waplugin = sanitize_text_field($_POST['dpwap_feature']);
 	foreach ($waplugin as $value) {
 		if($value == 1){ 
 			$feature1=1;
@@ -332,7 +327,7 @@ function dpwap_download_link( $links, $plugin_file ){
 	);*/
 
 	$download_link = array(
-		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a></span>',
+		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.esc_html__( 'Download', 'download-plugin' ).'</a></span>',
 	);
 
 	return array_merge( $links, $download_link );
@@ -413,7 +408,7 @@ function dpwap_download(){
 			$zip = new ZipArchive();
 			$zipArchive = $zip->open( $rlpath.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 			if($zipArchive !== TRUE){
-				_e('Error: Unable to create zip file as zip extension not found.', 'download-plugin');
+				esc_html__('Error: Unable to create zip file as zip extension not found.', 'dpwap');
 				exit;
 			}
 
