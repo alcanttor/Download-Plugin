@@ -242,7 +242,7 @@ function wpdap_custom_admin_head_loader() {
 		$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
 		echo "<div id='dpwapLoader'>";
 		echo  "<img src='{$imgUrl}'>";
-		echo "<p>". esc_html_e('This may take few minutes based on the number and size of the plugins', 'dpwap')."</p></div>";
+		echo "<p>". esc_html__('This may take few minutes based on the number and size of the plugins', 'dpwap')."</p></div>";
 	}
 }
 add_action( 'admin_head', 'wpdap_custom_admin_head_loader' );
