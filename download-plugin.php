@@ -57,7 +57,6 @@ function dpwap_admin_scripts( $hook ){
 		$isDpPage = 1;
 	}
 	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
-		wp_enqueue_script( 'up_admin_script', DPWAP_URL.'js/bootstrap.min.js', array('jquery'));
 		wp_enqueue_script( 'up_admin_func', DPWAP_URL.'js/multiple.js',array(),'6.1');
 		wp_register_style( 'dpwap-admin-style', DPWAP_URL.'/css/dpwap-admin.css' );
 		wp_enqueue_style( 'dpwap-admin-style' );
@@ -210,7 +209,13 @@ function dpwap_setting_popup_func() {
 			?>
 			<script language="javascript">
 				jQuery(window).load(function() {
-					jQuery('#dpwap_modal').modal();
+					jQuery('#dpwap_modal').toggle();
+                                        jQuery('#dpwap_modal').toggleClass('in');
+                                        
+                                    jQuery( "#dpwap_modal .dpwap-close, #dpwap_modal .dpwap_modal-ovalay" ).click(function() {     
+                                    jQuery('#dpwap_modal').hide();
+                                    });
+                                        //jQuery('#dpwap_modal').modal();
 				});
 			</script>
 			<?php

@@ -1,5 +1,6 @@
 <!-- Modal -->
 <div id="dpwap_modal" class="modal fade" tabindex="-1">
+    <div class="dpwap_modal-ovalay"></div>
 	<div class="modal-dialog">
 		<div class="modal-content">
                     
@@ -10,7 +11,7 @@
 			<div class="dpwap_section_first-slide dpwap_section_content current" id="1">
 
 			 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
+				<button class="dpwap-close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
                     <div class="dpwap-head-left">
 <!--                        <div class="dpwap-head-title">Download Plugin  </div>
@@ -49,7 +50,7 @@
              <div class="dpwap_section_second-slide dpwap_section_content" id="2">
 
 			 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
+				<button class="dpwap-close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
                     <div class="dpwap-head-left">
 <!--                        <div class="dpwap-head-title">Download Plugin  </div>
@@ -86,7 +87,7 @@
 			 <div class="dpwap_section_third-slide dpwap_section_content" id="3">
 
 			 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
+				<button class="dpwap-close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
 
                     <div class="dpwap-head-right">
@@ -118,7 +119,7 @@
 			 <div class="dpwap_section_fourth-slide dpwap_section_content" id="3">
 
 			 <div class="modal-head">
-				<button class="close" type="button" data-dismiss="modal">&#10005;</button>
+				<button class="dpwap-close" type="button" data-dismiss="modal">&#10005;</button>
 				<div class="img_block dpwap-head">
 
                     <div class="dpwap-head-fourth-slide">

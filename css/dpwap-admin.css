@@ -305,7 +305,7 @@
     display: none !important;
 }
 
-.modal-head .close {
+.modal-head .dpwap-close {
     position: absolute;
     right: 0px;
     z-index: 999;
@@ -316,7 +316,19 @@
     color: #ffffff; 
 }
 
-.modal-head .close:hover {
+#dpwap_modal .dpwap_modal-ovalay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    z-index: 0;
+}
+
+.modal-head .dpwap-close:hover {
     color: #a00;
     cursor: pointer;
 }
