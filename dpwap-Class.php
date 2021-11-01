@@ -39,13 +39,13 @@ class dpwapuploader
         else{
 		    include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 		    $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('type', 'title', 'nonce', 'url') ) ); 
-		    echo "<div class='dpwap_inner ".esc_attr($whform)."' id='dpwap_sec_".esc_attr($dpid)."'>";
+		    echo "<div class='".esc_attr('dpwap_inner '.$whform)."' id='".esc_attr('dpwap_sec_'.$dpid)."'>";
 		    echo "<h4>".esc_html(basename( $package ) )."</h4>";
 		    $res=$upgrader->install($package);
 		    if($res){ echo "<div id='activate_yes'></div>"; }
 		    update_option("dpwap_plugins",$dpid);
 		    echo '<input type="hidden" name="dpid" value="'.esc_attr($dpid).'">';
-		    echo '<input type="hidden" id="dpwap_plglist" name="dpwap_plglist_'.esc_attr($dpid).'" value="'.esc_attr($upgrader->plugin_info()).'">';
+		    echo '<input type="hidden" id="dpwap_plglist" name="'.esc_attr('dpwap_plglist_'.$dpid).'" value="'.esc_attr($upgrader->plugin_info()).'">';
 			//remove temp files
 			if($whform == "upload_locFiles"){
 				@unlink($package);

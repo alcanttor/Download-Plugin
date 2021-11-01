@@ -3,7 +3,7 @@
 Plugin Name: Download Plugin
 Plugin URI: http://metagauss.com
 Description: Download any plugin from your wordpress admin panel's plugins page by just one click!
-Version: 1.6.1
+Version: 1.6.2
 Author: metagauss
 Author URI: https://profiles.wordpress.org/metagauss/
 Text Domain: download-plugin
@@ -202,20 +202,17 @@ add_action( 'wp_ajax_dpwap_plugin_download_url', 'dpwap_plugin_multiple_download
 //}
 
 function dpwap_setting_popup_func() {
-
 	global $pagenow;
 	if ( $pagenow == 'plugins.php') {
-		if(!get_option('dpwap_popup_status')){  
-			?>
+		if(!get_option('dpwap_popup_status')){ ?>
 			<script language="javascript">
 				jQuery(window).load(function() {
 					jQuery('#dpwap_modal').toggle();
-                                        jQuery('#dpwap_modal').toggleClass('in');
-                                        
-                                    jQuery( "#dpwap_modal .dpwap-close, #dpwap_modal .dpwap_modal-ovalay" ).click(function() {     
-                                    jQuery('#dpwap_modal').hide();
-                                    });
-                                        //jQuery('#dpwap_modal').modal();
+					jQuery('#dpwap_modal').toggleClass('in');
+					jQuery( "#dpwap_modal .dpwap-close, #dpwap_modal .dpwap_modal-ovalay" ).click(function() {
+						jQuery('#dpwap_modal').hide();
+					});
+					//jQuery('#dpwap_modal').modal();
 				});
 			</script>
 			<?php
@@ -227,7 +224,6 @@ function dpwap_setting_popup_func() {
 }
 
 function dpwap_upload_popup_func() {
-
 	global $pagenow;
 	if ( $pagenow == 'plugin-install.php') {
 		require_once 'dpwap_setting.php';
@@ -240,13 +236,13 @@ add_action( 'admin_footer', 'dpwap_setting_popup_func' );
 function wpdap_custom_admin_head_loader() {
 	global $pagenow;
 	$isDpPage = 0;
-	if(isset($_GET['page']) && ($_GET['page'] == 'mul_upload' || $_GET['page'] == 'activate-status' || $_GET['page'] == 'dpwap-activate')){
+	if(isset($_GET['page']) && (sanitize_text_field($_GET['page']) == 'mul_upload' || sanitize_text_field($_GET['page']) == 'activate-status' || sanitize_text_field($_GET['page']) == 'dpwap-activate')){
 		$isDpPage = 1;
 	}
 	if($pagenow == 'plugins.php' || $pagenow == 'plugin-install.php' || !empty($isDpPage)){
 		$imgUrl = DPWAP_URL.'images/dpwap-loader.gif';
 		echo "<div id='dpwapLoader'>";
-		echo  "<img src='{$imgUrl}'>";
+		echo  "<img src='".esc_url($imgUrl)."'>";
 		echo "<p>". esc_html__('This may take few minutes based on the number and size of the plugins', 'dpwap')."</p></div>";
 	}
 }
@@ -281,23 +277,6 @@ function dpwap_plugin_activate_func() {
 
 add_action( 'wp_ajax_dpwap_plugin_activate', 'dpwap_plugin_activate_func');
 
- //user based feature select function
-function dpwap_feature_select_func() { 
-	$waplugin = sanitize_text_field($_POST['dpwap_feature']);
-	foreach ($waplugin as $value) {
-		if($value == 1){ 
-			$feature1=1;
-		}elseif (($value >= 2) && ($value <= 8)) {
-			$feature2 =1;
-		}elseif(($value >= 9) && ($value <= 15)){
-			$feature3 =1;
-		}else{  $feature4 =1;   }
-	}
-	require_once 'dpwap-add-feature.php';
-	wp_die(); 
-}
-add_action( 'wp_ajax_dpwap_feature_select', 'dpwap_feature_select_func'); 
-
 /**
  * Add download link to plugins page
  * 
@@ -329,9 +308,9 @@ function dpwap_download_link( $links, $plugin_file ){
 	/*$download_link = array(
 		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.__( 'Download', 'download-plugin' ).'</a><span class="dpwap-download-info dashicons dashicons-editor-help"></span></span>',
 	);*/
-
+	$dp_url = '?dpwap_download='.$path.'&f='.$folder;
 	$download_link = array(
-		'<span class="dpwap_download-wrap"><a href="?dpwap_download='.$path.'&f='.$folder.'" class="dpwap_download_link">'.esc_html__( 'Download', 'download-plugin' ).'</a></span>',
+		'<span class="dpwap_download-wrap"><a href="'.esc_url($dp_url).'" class="dpwap_download_link">'.esc_html__( 'Download', 'download-plugin' ).'</a></span>',
 	);
 
 	return array_merge( $links, $download_link );
